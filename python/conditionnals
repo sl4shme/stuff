@@ -1,0 +1,79 @@
+Comparison Functions
+	In [445]: 1 == 2
+	Out[445]: False
+	In [446]: 1 != 2
+	Out[446]: True
+	In [447]: 1 > 2
+	Out[447]: False
+	In [449]: 1 < 2
+	Out[449]: True
+	In [450]: 1 >= 2
+	Out[450]: False
+	In [451]: 1 <= 2
+	Out[451]: True
+	In [456]: "plop" in "dhwejdhwekdewplopdjwekldjewlk"
+	Out[456]: True
+	In [452]: 1 not in [1, 2, 3]
+	Out[452]: False
+	In [454]: 1 is None (uses id())
+	Out[454]: False
+
+
+
+If
+	In [468]: if 1 == 1:
+	     ...:     print("PLOP")
+	     ...:     
+	PLOP
+
+
+
+If .. else
+	In [470]: if 1 > 2:
+	     ...:     print("PLOP")
+	     ...: else:
+	     ...:     print("PLIP")
+	     ...:     
+	     ...:     
+	PLIP
+
+
+
+If .. elif .. else
+	In [471]: test = 1
+	In [472]: if test == 0:
+	     ...:     print("PLOP")
+	     ...: elif test == 1 :
+	     ...:     print("PLIP")
+	     ...: else:
+	     ...:      print("PLUP")
+	     ...:
+	PLIP
+
+
+
+Using functions
+	In [475]: def test():
+	     ...:     return False
+	     ...: 
+	In [476]: if test():
+	     ...:     print("test")
+
+
+
+What is False and what is True
+	In [480]: if "dewdwe":
+	     ...:     print("test")
+	     ...:     
+	test
+
+
+	
+And / or
+	In [478]: if (1 == 1) and test():
+	     ...:     print("plop")
+	     ...:     
+	In [479]: if (1 == 1) or test():
+	     ...:     print("plop")
+	     ...:     
+	plop
