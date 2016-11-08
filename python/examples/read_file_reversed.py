@@ -17,5 +17,4 @@ In [185]: def plop(file):
 
 In [186]: optimized  = [i for i in plop("ceph_cmd")]
 
-In [187]: full = ["".join(reversed(list(line)))[1:] + "\n" for line in reversed(open("ceph_cmd").readlines())]
-
+In [187]: full = ["".join(reversed(line))[1:] + "\n" for line in reversed(open("ceph_cmd").readlines())]
