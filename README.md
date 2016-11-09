@@ -11,6 +11,7 @@
     - [_Functions_](development/python/functions.md)
     - [_Loops_](development/python/loops.md)
     - [_Types_](development/python/types.md)
+    - [_Comprehension_](development/python/comprehension.md)
 - [Linux](linux/)
   - [Commands](linux/commands/)
   - [System](linux/system/)
