@@ -5,7 +5,7 @@
   - [Markdown](development/markdown/)
     - [_Cheatsheet_](development/markdown/markdown_cheatsheet.md)
   - [Python](development/python/)
-    - [_Examples_](development/python/examples/)
+    - [Examples](development/python/examples/)
     - [_Comments_](development/python/comments.md)
     - [_Conditionnals_](development/python/conditionnals.md)
     - [_Functions_](development/python/functions.md)
