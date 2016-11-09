@@ -5,8 +5,8 @@ while i < 5:
     print(i)
     i += 1
 ```
-> 0 <br/> 
-> 1 <br/> 
+> 0 <br/>
+> 1 <br/>
 > 2 <br/>
 > 3 <br/>
 > 4
@@ -16,16 +16,17 @@ while i < 5:
 for i in range(0,12,2):
     print(i)
 ```
-> 1 <br/>
+> 0 <br/>
 > 2 <br/>
-> 3 <br/>
 > 4 <br/>
-> 5
+> 6 <br/>
+> 8 <br/>
+> 10
 
-range([start], stop[, step])
-- Start: Starting number of the sequence.
-- Stop: Generate numbers up to, but not including this number.
-- Step: Difference between each number in the sequence.
+**range([start], stop[, step])**
+- _Start_: Starting number of the sequence.
+- _Stop_: Generate numbers up to, but not including this number.
+- _Step_: Difference between each number in the sequence.
 
 ##Continue
 ```python
@@ -67,7 +68,7 @@ a = 5 /0
 ```
 > --------------------------------------------------------------------------- <br/>
 > ZeroDivisionError                         Traceback (most recent call last) <br/>
-> <ipython-input-489-0aec5d0a819c> in <module>() <br/>
+> ipython-input-489-0aec5d0a819c> in module>() <br/>
 > ----> 1 a = 5 /0 <br/>
 > ZeroDivisionError: integer division or modulo by zero <br/>
 
