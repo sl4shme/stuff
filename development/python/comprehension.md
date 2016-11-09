@@ -24,7 +24,7 @@ formated = ["Number: {}".format(entry) for entry in data]
 ```
 
 ##Syntax
-```python
+```
 result = [ < what to put in the list > < iterable > < optional condition > ]
 ```
 
