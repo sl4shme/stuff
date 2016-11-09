@@ -6,20 +6,20 @@ while i < 5:
     i += 1
 ```
 > 0 <br/> 
-> 1  
-> 2 
-> 3 
-> 4 
+> 1 <br/> 
+> 2 <br/>
+> 3 <br/>
+> 4
 
 ##For
 ```python
 for i in range(0,12,2):
     print(i)
 ```
-> 1
-> 2
-> 3
-> 4
+> 1 <br/>
+> 2 <br/>
+> 3 <br/>
+> 4 <br/>
 > 5
 
 range([start], stop[, step])
@@ -34,9 +34,9 @@ for i in [1, 2, 3, 4, 5]:
         continue
     print(i)
 ```
-> 1
-> 2
-> 4
+> 1 <br/>
+> 2 <br/>
+> 4 <br/>
 > 5
 
 ##Break
@@ -46,7 +46,7 @@ for i in [1, 2, 3, 4, 5]:
         break
     print(i)
 ```
-> 1
+> 1 <br/>
 > 2
 
 ##Pass
@@ -57,19 +57,19 @@ for i in [1, 2, 3, 4, 5]:
     else:
         print(i)
 ```
-> 1
-> 3
+> 1 <br/>
+> 3 <br/>
 > 5
 
 ##Try .. Except
 ```python
 a = 5 /0
 ```
-> ---------------------------------------------------------------------------
-> ZeroDivisionError                         Traceback (most recent call last)
-> <ipython-input-489-0aec5d0a819c> in <module>()
-> ----> 1 a = 5 /0
-> ZeroDivisionError: integer division or modulo by zero
+> --------------------------------------------------------------------------- <br/>
+> ZeroDivisionError                         Traceback (most recent call last) <br/>
+> <ipython-input-489-0aec5d0a819c> in <module>() <br/>
+> ----> 1 a = 5 /0 <br/>
+> ZeroDivisionError: integer division or modulo by zero <br/>
 
 ```python
 try:
