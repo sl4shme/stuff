@@ -3,10 +3,12 @@
 1 == 2
 ```
 > False
+
 ```python
 1 != 2
 ```
 > True
+
 ```python
 1 > 2
 ```
