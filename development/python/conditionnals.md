@@ -44,6 +44,11 @@
 ```
 > False
 
+```python
+1 is not None
+```
+> True
+
 ##If
 ```python
 if 1 == 1:
@@ -84,6 +89,17 @@ if test():
 
 
 ##What is False and what is True
+Any object can be tested for truth value, for use in an if or while condition or as operand of the Boolean operations below. The following values are considered false:
+
+- None
+- False
+- Zero of any numeric type, for example, 0, 0.0, 0j.
+- Any empty sequence, for example, '', (), [].
+- Any empty mapping, for example, {}.
+- Instances of user-defined classes, if the class defines a __bool__() or __len__() method, when that method returns the integer zero or bool value False.
+
+All the rest is considered True
+
 ```python
 if "false":
     print("test")
@@ -96,37 +112,7 @@ if "":
 ```
 > _
 
-```python
-if 1:
-    print("test")
-```
-> test
-
-```python
-if 0:
-    print("test")
-```
-> _
-
-```python
-if [1,2,3]:
-    print("test")
-```
-> test
-
-```python
-if []:
-    print("test")
-```
-> _
-
-```python
-if None
-    print("test")
-```
-> _
-
-##And / or
+##And / or / not
 ```python
 if (1 == 1) and False:
     print("plop")
@@ -135,6 +121,12 @@ if (1 == 1) and False:
 
 ```python
 if (1 == 1) or False:
+    print("plop")
+```
+> plop
+
+```python
+if (1 == 1) and not False:
     print("plop")
 ```
 > plop

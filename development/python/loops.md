@@ -13,7 +13,7 @@ while i < 5:
 
 ##For
 ```python
-for i in range(0,12,2):
+for i [0, 2, 4, 6, 8, 10]:
     print(i)
 ```
 > 0 <br/>
@@ -22,11 +22,6 @@ for i in range(0,12,2):
 > 6 <br/>
 > 8 <br/>
 > 10
-
-**range([start], stop[, step])**
-- _Start_: Starting number of the sequence.
-- _Stop_: Generate numbers up to, but not including this number.
-- _Step_: Difference between each number in the sequence.
 
 ##Continue
 ```python
