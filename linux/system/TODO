@@ -1,0 +1,15 @@
+Raid
+https://github.com/0xAX/linux-insides
+SYScalls
+Booting process
+Modes and Complex modes
+Common dir in Filesystems and common files
+Operating Systems: Process / Memory / VFS /IPC / Network interface
+Namespaces
+Kernel Preemption
+Kernel Sync
+Interrupt
+Timer
+Driver
+http://cb.vu/unixtoolbox.xhtml
+http://learnlinuxconcepts.blogspot.co.uk/2014/03/explain-basics-of-linux-kernel.html

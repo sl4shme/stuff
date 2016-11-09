@@ -1,0 +1,50 @@
+OOP / inheritance
+Magic methods
+Common Modules
+Reference / id()
+File Objet
+kwargs and kargs
+Scoping
+Lambda
+objects (IPC) : mutex / pipes / systems sockets / signals
+List/Dict/Set comprehensions
+Threading / Processes / Gil
+Generators/ Iterators / Yield / itertools
+Decorators
+Ctypes
+Stacktraces
+Exceptions
+map / reduce
+Standard library overview
+configparser
+argparser
+Datetime / time / tiemstamp
+Python 2  3 and six , abc
+Metaclasses
+Logging
+Debugging -> PyCharm, PyDbg
+Profiling
+Yaml / json / pickle
+Template engines / Jinja
+requests and urlib
+Sockets
+0MQ
+Api rest models
+Queues
+Unit testing and mock
+Web framework: Django, flask, webop , mvc
+coroutines / async
+asyncio
+Twisted
+Deamoning
+schedulers : celery and apscheduler
+system
+crypto
+Database
+String formats : unicode, utf8
+Bytes operation
+Boolean Logic
+Functional programing and functools
+Weak reference
+Fabric / paramiko
+Packaging: module / init / import / setup.py / venv pythonpath / pip / easy_install / egg/ wheel / setuptools

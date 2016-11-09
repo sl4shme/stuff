@@ -1,0 +1,12 @@
+Process, fork, thread : top, Ps, fg, bg , nohup, screen
+Awk / Sed
+Strace / lsof / file descriptor
+Tcpdump
+Netstat
+IPTables
+Apt, dpkg / yum, rpm
+Apache
+KVM / Virsh
+Cron / at
+Find
+IP command
