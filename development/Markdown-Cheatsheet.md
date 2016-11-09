@@ -1,17 +1,26 @@
 ##### Table of Contents
 [Headers](#headers)
+
 [Emphasis](#emphasis)
+
 [Lists](#lists)
+
 [Links](#links)
+
 [Images](#images)
+
 [Code and Syntax Highlighting](#code)
+
 [Tables](#tables)
+
 [Blockquotes](#blockquotes)
+
 [Inline HTML](#html)
+
 [Horizontal Rule](#hr)
+
 [Line Breaks](#lines)
-[Table of Contents](#toc)
-[UML Diagrams](#diagrams)
+
 
 <a name="headers"/>
 ## Headers
@@ -372,61 +381,3 @@ This line is also begins a separate paragraph, but...
 This line is only separated by a single newline, so it's a separate line in the *same paragraph*.
 
 (Technical note: *Markdown Here* uses GFM line breaks, so there's no need to use MD's two-space line breaks.)
-
-<a name="toc"/>
-## Table of Contents
-
-```
-You can insert a table of contents using the marker `[TOC]`:
-```
-
-[TOC]
-
-
-<a name="diagrams"/>
-## UML diagrams
-
-<pre lang="no-highlight"><code>
-You can also render sequence diagrams like this:
-http://bramp.github.io/js-sequence-diagrams/
-
-```sequence
-Alice->Bob: Hello Bob, how are you?
-Note right of Bob: Bob thinks
-Bob-->Alice: I am good thanks!
-```
-</code></pre>
-
-```sequence
-Alice->Bob: Hello Bob, how are you?
-Note right of Bob: Bob thinks
-Bob-->Alice: I am good thanks!
-```
-
-<pre lang="no-highlight"><code>
-And flow charts like this:
-http://bramp.github.io/js-sequence-diagrams/
-
-```flow
-st=>start: Start
-e=>end
-op=>operation: My Operation
-cond=>condition: Yes or No?
-
-st->op->cond
-cond(yes)->e
-cond(no)->op
-```
-</code></pre>
-
-
-```flow
-st=>start: Start
-e=>end
-op=>operation: My Operation
-cond=>condition: Yes or No?
-
-st->op->cond
-cond(yes)->e
-cond(no)->op
-```
