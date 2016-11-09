@@ -69,7 +69,7 @@ print(big_list)
 ```python
 In [30]: %%time
     ...: result = []
-    ...: for i in big\_list:
+    ...: for i in big_list:
     ...:     if i['tag'] == "test1":
     ...:         result.append(i)
     ...: 
@@ -81,7 +81,7 @@ In [30]: %%time
 - **Using a comprehensive list**
 ```python
 In [35]: %%time
-    ...: result = [i for i in big\_list if i['tag'] == "test1"]
+    ...: result = [i for i in big_list if i['tag'] == "test1"]
     ...: 
 ```
 > CPU times: user 1.29 s, sys: 40 ms, total: 1.33 s <br/>
@@ -92,7 +92,7 @@ In [35]: %%time
 ```python
 In [52]: %%time
     ...: t = "test1"
-    ...: result = [i for i in big\_list if i.get('tag', "") == t]
+    ...: result = [i for i in big_list if i.get('tag', "") == t]
     ...: 
 ```
 > CPU times: user 2.54 s, sys: 100 ms, total: 2.64 s <br/>
@@ -107,7 +107,7 @@ In [59]: %%time
     ...:         return True
     ...:     else:
     ...:         return False
-    ...: result = filter(f, big\_list)
+    ...: result = filter(f, big_list)
     ...: 
 ```
 > CPU times: user 1.71 s, sys: 76.7 ms, total: 1.78 s <br/>
@@ -117,7 +117,7 @@ In [59]: %%time
 - **Filter and lambda**
 ```python
 In [42]: %%time
-    ...: result = filter(lambda i:i['tag'] == "test1", big\_list)
+    ...: result = filter(lambda i:i['tag'] == "test1", big_list)
     ...: 
 ```
 > CPU times: user 1.49 s, sys: 107 ms, total: 1.6 s <br/>
