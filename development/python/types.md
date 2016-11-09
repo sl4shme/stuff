@@ -45,7 +45,6 @@ print(l1[-1])
 > 6
 
 ```python
-l1 = [1, 2, 3, 4, 5, 6]
 l2[0] = 0
 print(l2)
 ```
@@ -76,8 +75,8 @@ print([1, 2, 3] + [4, 5, 6])
 
 ```python
 print(3 in [1, 2, 3])
-print()l1.index(1))
-print()l1.count(1))
+print(l1.index(1))
+print(l1.count(1))
 ```
 > True <br/>
 > 0 <br/>
@@ -86,21 +85,27 @@ print()l1.count(1))
 ```python
 l1.append(7)
 print(l1)
+```
+> [1, 2, 3, 4, 5, 6, 7]
+
+```python
 print(l1.pop())
 print(l1)
+```
+> 7 <br/>
+> [1, 2, 3, 4, 5, 6]
+
+```python
 l1.insert(0, 0)
 print(l1)
 l1.remove(6)
 print(l1)
 ```
-> [1, 2, 3, 4, 5, 6, 7] <br/>
-> 7 <br/>
-> [1, 2, 3, 4, 5, 6] <br/>
 > [0, 1, 2, 3, 4, 5, 6] <br/>
 > [0, 1, 2, 3, 4, 5]
 
 ```python
-l1.reverse() #Reverses the list, does not return the reversed list
+l1.reverse() # Reverses the list, does not return the reversed list
 print(l1))
 print(reversed([1,2,3]))
 ```
@@ -200,10 +205,10 @@ len(s1)
 ```python
 s1 = {0,1,2}
 s2 = {2,3,4}
-print(s1.difference(s2))           #In s1 but not in s2
-print(s1.symmetric_difference(s2)) #Not in both
-print(s1.intersection(s2))         #In both
-print(s1.union(s2))                #In s1 or s2
+print(s1.difference(s2))           # In s1 but not in s2
+print(s1.symmetric_difference(s2)) # Not in both
+print(s1.intersection(s2))         # In both
+print(s1.union(s2))                # In s1 or s2
 ```
 > {0, 1} <br/>
 > {0, 1, 3, 4} <br/>
@@ -211,9 +216,9 @@ print(s1.union(s2))                #In s1 or s2
 > {0, 1, 2, 3, 4}
 
 ```python
-print(s1.isdisjoint(s2)) #No common elements
-print(s1.issubset(s2))   #All s1 elements are also part of s2
-print(s1.issuperset(s2)) #All s2 elements are also part of s1
+print(s1.isdisjoint(s2)) # No common elements
+print(s1.issubset(s2))   # All s1 elements are also part of s2
+print(s1.issuperset(s2)) # All s2 elements are also part of s1
 ```
 > False <br/>
 > False <br/>
@@ -249,7 +254,7 @@ print(d)
 ```python
 print(d['age'])
 print(d.get("age"))
-print(d.get("plop", "nope")) #Defaults for get if not present is None
+print(d.get("plop", "nope")) # Defaults for get if not present is None
 ```
 > 25 <br/>
 > 26 <br/>
@@ -303,7 +308,7 @@ print("This is a string: %s and this an integer: %s" % (s, v1)) #Automatic str()
 > This is a string: plop and this an integer: 42
 
 ```python
-print("Value of s: {} . And v1: {}".format(s, v1))     (since python 2.7)
+print("Value of s: {} . And v1: {}".format(s, v1))  # Since python 2.7
 print("Value of s: {0} . And v1: {1}".format(s, v1))
 print("Value of v1: {1} . And s: {0} . And v1 again: {1}".format(s, v1))
 print("plop {} " "plop".format(s))
@@ -385,12 +390,11 @@ print(a)
 > sasasasas
 
 ##Bytes
-**! Python3 !**
-Bytes objects are immutable sequences of single bytes.
-Since many major binary protocols are based on the ASCII text encoding, bytes objects offer several methods that are only valid when working with ASCII compatible data.
-Only ASCII characters are permitted in bytes literals (regardless of the declared source code encoding). Any binary values over 127 must be entered into bytes literals using the appropriate escape sequence.
-
-Supports classic strings methods
+- **! Python3 !**
+- Bytes objects are immutable sequences of single bytes.
+- Since many major binary protocols are based on the ASCII text encoding, bytes objects offer several methods that are only valid when working with ASCII compatible data.
+- Only ASCII characters are permitted in bytes literals (regardless of the declared source code encoding). Any binary values over 127 must be entered into bytes literals using the appropriate escape sequence.
+- Supports classic strings methods
 
 ```python
 b'still allows embedded "double" quotes'
@@ -414,12 +418,10 @@ print(b[0])
 > 80
 
 ##Bytearray
-**! Python3 !**
-
-Bytearray objects are a mutable counterpart to bytes objects.
-There is no dedicated literal syntax for bytearray objects, instead they are always created by calling the constructor bytearray()
-
-Supports classic strings methods
+- **! Python3 !**
+- Bytearray objects are a mutable counterpart to bytes objects.
+- There is no dedicated literal syntax for bytearray objects, instead they are always created by calling the constructor bytearray()
+- Supports classic strings methods
 
 ```python
 bytearray(b'Hi!')
