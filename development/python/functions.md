@@ -24,6 +24,7 @@ def plop(printme1, printme2):
 plop("a", "b")
 ```
 > PLOP: a / b
+
 ```python
 plop(printme2="two", printme1="one")
 ```
@@ -37,6 +38,7 @@ def plop(printme1, printme2="two"):
 plop("a")
 ```
 > PLOP: a / two
+
 ```python
 plop("a", "b")
 ```
@@ -52,6 +54,7 @@ print(result)
 ```
 > PLOP: a / b
 > None
+
 ```python
 def plop(printme1, printme2="two"):
     text = "PLOP: {} / {}".format(printme1, printme2)
