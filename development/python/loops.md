@@ -68,7 +68,7 @@ a = 5 /0
 ```
 > --------------------------------------------------------------------------- <br/>
 > ZeroDivisionError                         Traceback (most recent call last) <br/>
-> ipython-input-489-0aec5d0a819c> in module>() <br/>
+> < ipython-input-489-0aec5d0a819c> in < module>() <br/>
 > ----> 1 a = 5 /0 <br/>
 > ZeroDivisionError: integer division or modulo by zero <br/>
 
