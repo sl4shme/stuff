@@ -63,4 +63,4 @@ def plop(printme1, printme2="two"):
 result = plop("a", "b")
 print(result)
 ```
-> 'PLOP: a / b'
+> PLOP: a / b
