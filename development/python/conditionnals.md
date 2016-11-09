@@ -94,7 +94,7 @@ if "false":
 if "":
     print("test")
 ```
->
+> _
 
 ```python
 if 1:
@@ -106,7 +106,7 @@ if 1:
 if 0:
     print("test")
 ```
->
+> _
 
 ```python
 if [1,2,3]:
@@ -118,20 +118,20 @@ if [1,2,3]:
 if []:
     print("test")
 ```
->
+> _
 
 ```python
 if None
     print("test")
 ```
->
+> _
 
 ##And / or
 ```python
 if (1 == 1) and False:
     print("plop")
 ```
->
+> _
 
 ```python
 if (1 == 1) or False:
