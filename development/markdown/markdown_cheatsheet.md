@@ -178,23 +178,23 @@ Some text to show that the reference links can follow later.
 Here's linux's logo (hover to see the title text):
 
 Inline-style:
-![alt text](http://www.linuxnews.in/images/linux_tux_penguin.png "Tux")
+![alt text](http://www.linuxnews.in/images/linux_tux_penguin.png)
 
 Reference-style:
 ![alt text][logo]
 
-[logo]: http://www.linuxnews.in/images/linux_tux_penguin.png "Tux"
+[logo]: http://www.linuxnews.in/images/linux_tux_penguin.png
 ```
 
 Here's our logo (hover to see the title text):
 
 Inline-style:
-![alt text](http://www.linuxnews.in/images/linux_tux_penguin.png "Tux")
+![alt text](http://www.linuxnews.in/images/linux_tux_penguin.png)
 
 Reference-style:
 ![alt text][logo]
 
-[logo]: http://www.linuxnews.in/images/linux_tux_penguin.png "Tux"
+[logo]: http://www.linuxnews.in/images/linux_tux_penguin.png
 
 <a name="code"/>
 ## Code and Syntax Highlighting
