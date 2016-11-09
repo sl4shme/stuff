@@ -13,26 +13,32 @@
 1 > 2
 ```
 > False
+
 ```python
 1 < 2
 ```
 > True
+
 ```python
 1 >= 2
 ```
 > False
+
 ```python
 1 <= 2
 ```
 > True
+
 ```python
 "plop" in "dhwejdhwekdewplopdjwekldjewlk"
 ```
 > True
+
 ```python
 1 not in [1, 2, 3]
 ```
 > False
+
 ```python
 1 is None
 ```
@@ -83,31 +89,37 @@ if "false":
     print("test")
 ```
 > test
+
 ```python
 if "":
     print("test")
 ```
 >
+
 ```python
 if 1:
     print("test")
 ```
 > test
+
 ```python
 if 0:
     print("test")
 ```
 >
+
 ```python
 if [1,2,3]:
     print("test")
 ```
 > test
+
 ```python
 if []:
     print("test")
 ```
 >
+
 ```python
 if None
     print("test")
@@ -120,6 +132,7 @@ if (1 == 1) and False:
     print("plop")
 ```
 >
+
 ```python
 if (1 == 1) or False:
     print("plop")
