@@ -7,7 +7,6 @@ kwargs and kargs
 Scoping
 Lambda
 objects (IPC) : mutex / pipes / systems sockets / signals
-List/Dict/Set comprehensions
 Threading / Processes / Gil
 Generators/ Iterators / Yield / itertools
 Decorators
