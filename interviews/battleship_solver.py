@@ -59,7 +59,29 @@ class Matrix():
             return False
 
 
-def find_ship(matrix):
+def run_test(f, c, n):
+    """
+    Run c iterations of test with a matrix of n*n and display the average
+    number of bomb needed to discover the ship
+    """
+    tries = []
+    for i in range(c):
+        m = Matrix(n)
+        r = f(m)
+        if r != (m.ship[0], m.ship[1], m.ship[2]):
+            raise Exception("Wrong result with function: {}. Ship: {}. Result:"
+                            "{}".format(f.__name__, m.ship, r))
+        tries.append(m.tries)
+        average = round(sum(tries) / len(tries), 3)
+        max_tries = n * n
+        percentage = round((average * 100) / max_tries, 3)
+    print("Function {} averages: {} / {} tries or {} %".format(f.__name__,
+                                                               average,
+                                                               max_tries,
+                                                               percentage))
+
+
+def bruteforce(matrix):
     """
     Dumb bruteforce
     """
@@ -71,15 +93,7 @@ def find_ship(matrix):
     return res[0], res[1], res[2]
 
 
-av = []
-for i in range(1000):
-    m = Matrix(10)
-    r = find_ship(m)
-    av.append(m.tries)
-print("find_ship average: {} tries".format(sum(av) / len(av)))
-
-
-def find_ship_2(matrix):
+def smart_bruteforce(matrix):
     """
     Dumb bruteforce but stops when found
     """
@@ -90,13 +104,6 @@ def find_ship_2(matrix):
                 res.append((x, y))
                 if len(res) == 3:
                     return res[0], res[1], res[2]
-
-av = []
-for i in range(1000):
-    m = Matrix(10)
-    r = find_ship_2(m)
-    av.append(m.tries)
-print("find_ship_2 average: {} tries".format(sum(av) / len(av)))
 
 
 def _find_from_hit(x, y, matrix):
@@ -110,34 +117,34 @@ def _find_from_hit(x, y, matrix):
         res.append((x + 1, y))
         if matrix.bomb(x + 2, y):
             res.append((x + 2, y))
-            return res
+            return res[0], res[1], res[2]
         else:
             # Horizontal center
             res.insert(0, (x - 1, y))
-            return res
+            return res[0], res[1], res[2]
     elif matrix.bomb(x - 1, y):
         # Horizontal left
         res.insert(0, (x - 1, y))
         res.insert(0, (x - 2, y))
-        return res
+        return res[0], res[1], res[2]
     # Vertical Down
     elif matrix.bomb(x, y + 1):
         res.append((x, y + 1))
         if matrix.bomb(x, y + 2):
             res.append((x, y + 2))
-            return res
+            return res[0], res[1], res[2]
         else:
             # Vertical center
             res.insert(0, (x, y - 1))
-            return res
+            return res[0], res[1], res[2]
     elif matrix.bomb(x, y - 1):
         # Vertical up
         res.insert(0, (x, y - 1))
         res.insert(0, (x, y - 2))
-        return res
+        return res[0], res[1], res[2]
 
 
-def find_ship_3(matrix):
+def bruteforce_until_hit(matrix):
     """
     Bruteforce until first position found
     """
@@ -147,39 +154,20 @@ def find_ship_3(matrix):
                 return _find_from_hit(x, y, matrix)
 
 
-av = []
-for i in range(1000):
-    m = Matrix(10)
-    r = find_ship_3(m)
-    av.append(m.tries)
-print("find_ship_3 average: {} tries".format(sum(av) / len(av)))
-
-
-def find_ship_4(matrix):
+def random_until_hit(matrix):
     """
     Random until first position found
     """
-    tried = []
-    while len(tried) <= (matrix.n * matrix.n):
-        x = random.randint(0, matrix.n)
-        y = random.randint(0, matrix.n)
-        if (x, y) in tried:
-            continue
-        if _find_from_hit(x, y, matrix):
-            return _find_from_hit(x, y, matrix)
-        else:
-            tried.append((x, y))
+    # Generate a list of posible cells
+    cells = [(x, y) for x in range(matrix.n) for y in range(matrix.n)]
+    random.shuffle(cells)
+
+    for cell in cells:
+        if matrix.bomb(cell[0], cell[1]):
+            return _find_from_hit(cell[0], cell[1], matrix)
 
 
-av = []
-for i in range(1000):
-    m = Matrix(10)
-    r = find_ship_4(m)
-    av.append(m.tries)
-print("find_ship_4 average: {} tries".format(sum(av) / len(av)))
-
-
-def find_ship_5(matrix):
+def one_out_of_three_until_hit(matrix):
     """
     We don't need to check every cell, only one out of three
       0 1 2 3 4 5 6 7
@@ -212,9 +200,85 @@ def find_ship_5(matrix):
                     return _find_from_hit(x, y, matrix)
             offset = 0
 
-av = []
-for i in range(1000):
-    m = Matrix(10)
-    r = find_ship_5(m)
-    av.append(m.tries)
-print("find_ship_5 average: {} tries".format(sum(av) / len(av)))
+
+def _find_from_hit_border(x, y, matrix):
+    """
+    Find ship from a first hit
+    Takes border into account
+    The smaller the matrix is the bigger the difference it makes
+    """
+    s = matrix.n - 1
+    res = [(x, y)]
+    # Horizontal right
+    if x != s and matrix.bomb(x + 1, y):
+        res.append((x + 1, y))
+        if x != (s - 1) and matrix.bomb(x + 2, y):
+            res.append((x + 2, y))
+            return res[0], res[1], res[2]
+        else:
+            # Horizontal center
+            res.insert(0, (x - 1, y))
+            return res[0], res[1], res[2]
+    elif x != 0 and matrix.bomb(x - 1, y):
+        # Horizontal left
+        res.insert(0, (x - 1, y))
+        res.insert(0, (x - 2, y))
+        return res[0], res[1], res[2]
+    # Vertical Down
+    elif y != s and matrix.bomb(x, y + 1):
+        res.append((x, y + 1))
+        if y != (s - 1) and matrix.bomb(x, y + 2):
+            res.append((x, y + 2))
+            return res[0], res[1], res[2]
+        else:
+            # Vertical center
+            res.insert(0, (x, y - 1))
+            return res[0], res[1], res[2]
+    elif y != 0 and matrix.bomb(x, y - 1):
+        # Vertical up
+        res.insert(0, (x, y - 1))
+        res.insert(0, (x, y - 2))
+        return res[0], res[1], res[2]
+
+
+def bomb_with_cache(self, x, y):
+    """
+    Wraps the bomb() method in order to never bomb the same spot twice
+    """
+    try:
+        return self.cache[(x, y)]
+    except AttributeError:
+        self.cache = {}
+        return self.bomb(x, y)
+    except KeyError:
+        r = self._bomb(x, y)
+        self.cache[(x, y)] = r
+        return r
+
+
+i = 1000000
+n = 8
+
+print("Running {0} test iterations with matrix size {1}*{1}\n".format(i, n))
+
+run_test(bruteforce, i, n)
+run_test(smart_bruteforce, i, n)
+
+print("\n")
+
+run_test(bruteforce_until_hit, i, n)
+run_test(random_until_hit, i, n)
+run_test(one_out_of_three_until_hit, i, n)
+
+_find_from_hit = _find_from_hit_border
+print("\nPatched _find_from_hit() to take border into account.\n")
+run_test(bruteforce_until_hit, i, n)
+run_test(random_until_hit, i, n)
+run_test(one_out_of_three_until_hit, i, n)
+
+Matrix._bomb = Matrix.bomb
+Matrix.bomb = bomb_with_cache
+print("\nPatching bomb() to never bomb twice the same cell.\n")
+run_test(bruteforce_until_hit, i, n)
+run_test(random_until_hit, i, n)
+run_test(one_out_of_three_until_hit, i, n)

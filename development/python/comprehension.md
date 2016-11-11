@@ -28,7 +28,7 @@ formated = ["Number: {}".format(entry) for entry in data]
 result = [ < what to put in the list > < iterable > < optional condition > ]
 ```
 
-###Nested comprehensive list:
+##Nested comprehensive list:
 ```python
 result = [i for i in [j for j in range(1, 200) if j > 100 ] if i % 2 == 0]
 ```
@@ -63,7 +63,7 @@ print(big_list)
 > ........ <br/>
 > ........]
 
-###Performance testing:
+##Performance testing:
 
 - **Using a bare for**
 ```python
