@@ -18,6 +18,7 @@ if a ship was bombed and False if missed.
 The goal is to call bomb() as less as possible.
 """
 import random
+import sys
 
 
 def generate_ship(size):
@@ -59,21 +60,25 @@ class Matrix():
             return False
 
 
-def run_test(f, c, n):
+def run_test(f, matrixes):
     """
     Run c iterations of test with a matrix of n*n and display the average
     number of bomb needed to discover the ship
     """
     tries = []
-    for i in range(c):
-        m = Matrix(n)
+    for m in matrixes:
+        try:
+            del m.cache
+        except:
+            pass
+        m.tries = 0
         r = f(m)
         if r != (m.ship[0], m.ship[1], m.ship[2]):
             raise Exception("Wrong result with function: {}. Ship: {}. Result:"
                             "{}".format(f.__name__, m.ship, r))
         tries.append(m.tries)
         average = round(sum(tries) / len(tries), 3)
-        max_tries = n * n
+        max_tries = m.n * m.n
         percentage = round((average * 100) / max_tries, 3)
     print("Function {} averages: {} / {} tries or {} %".format(f.__name__,
                                                                average,
@@ -256,29 +261,76 @@ def bomb_with_cache(self, x, y):
         return r
 
 
-i = 1000000
-n = 8
+def one_out_of_three_until_hit_random(matrix):
+    """
+    We don't need to check every cell, only one out of three
+      0 1 2 3 4 5 6 7
+    0 x * * x * * x *
+    1 * x * * x * * x
+    2 * * x * * x * *
+    3 x * * x * * x *
+    4 * x * * x * * x
+    5 * * x * * x * *
+    6 x * * x * * x *
+    7 * x * * x * * x
+    """
+    # Generate a list of posible cells
+    cells = []
+    offset = 0
+    for y in range(matrix.n):
+        if offset == 0:
+            for x in range(0, matrix.n, 3):
+                cells.append((x, y))
+            offset = 1
+            continue
+        if offset == 1:
+            for x in range(1, matrix.n, 3):
+                cells.append((x, y))
+            offset = 2
+            continue
+        if offset == 2:
+            for x in range(2, matrix.n, 3):
+                cells.append((x, y))
+            offset = 0
 
-print("Running {0} test iterations with matrix size {1}*{1}\n".format(i, n))
+    # Randomize the list
+    random.shuffle(cells)
 
-run_test(bruteforce, i, n)
-run_test(smart_bruteforce, i, n)
+    for cell in cells:
+        if matrix.bomb(cell[0], cell[1]):
+            return _find_from_hit(cell[0], cell[1], matrix)
+
+
+iterations = int(sys.argv[1])
+n = int(sys.argv[2])
+matrixes = [Matrix(n) for i in range(iterations)]
+
+
+print("Running {0} test iterations with matrix "
+      "size {1}*{1}\n".format(iterations, n))
+
+
+run_test(bruteforce, matrixes)
+run_test(smart_bruteforce, matrixes)
 
 print("\n")
 
-run_test(bruteforce_until_hit, i, n)
-run_test(random_until_hit, i, n)
-run_test(one_out_of_three_until_hit, i, n)
+run_test(bruteforce_until_hit, matrixes)
+run_test(random_until_hit, matrixes)
+run_test(one_out_of_three_until_hit, matrixes)
+run_test(one_out_of_three_until_hit_random, matrixes)
 
 _find_from_hit = _find_from_hit_border
 print("\nPatched _find_from_hit() to take border into account.\n")
-run_test(bruteforce_until_hit, i, n)
-run_test(random_until_hit, i, n)
-run_test(one_out_of_three_until_hit, i, n)
+run_test(bruteforce_until_hit, matrixes)
+run_test(random_until_hit, matrixes)
+run_test(one_out_of_three_until_hit, matrixes)
+run_test(one_out_of_three_until_hit_random, matrixes)
 
 Matrix._bomb = Matrix.bomb
 Matrix.bomb = bomb_with_cache
 print("\nPatching bomb() to never bomb twice the same cell.\n")
-run_test(bruteforce_until_hit, i, n)
-run_test(random_until_hit, i, n)
-run_test(one_out_of_three_until_hit, i, n)
+run_test(bruteforce_until_hit, matrixes)
+run_test(random_until_hit, matrixes)
+run_test(one_out_of_three_until_hit, matrixes)
+run_test(one_out_of_three_until_hit_random, matrixes)
