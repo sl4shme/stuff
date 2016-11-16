@@ -43,7 +43,7 @@ print(result)
 ```python
 result = [[cell for cell in row] for row in matrix ]
 ```
-> [1, 2, 3, 4, 5, 6, 7, 8, 9]
+> [[1,2,3],[4,5,6],[7,8,9]]
 
 ##Let's generate some data for performance testing:
 ```python
