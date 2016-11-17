@@ -3,6 +3,11 @@
 
 # OSI model layers
 
+| | | |
+|-|-|-|
+| Normal Key| Value1 |
+|__BoldKey__| Value2 |
+
 ### Layer 1: Physical
 
 | | | |
