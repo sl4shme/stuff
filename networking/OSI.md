@@ -5,7 +5,7 @@
 
 ### Layer 1: Physical
 
-| _ | _ |
+|   |   |
 | --- | --- |
 | Role | It is responsible for transmission and reception of unstructured raw data in a physical medium. |
 | Hardware | Hubs |
