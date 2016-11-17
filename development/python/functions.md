@@ -1,3 +1,6 @@
+##Links
+- https://docs.python.org/3/tutorial/controlflow.html#defining-functions
+
 ##Basic
 ```python
 def plop():

@@ -1,3 +1,11 @@
+##Links
+- https://docs.python.org/3.5/library/stdtypes.html
+
+##Python types
+
+![Types](./types.gif)
+
+
 ##Booleans
 Booleans are immutable
 ```python

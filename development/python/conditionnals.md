@@ -1,3 +1,7 @@
+##Links
+- https://docs.python.org/3.5/reference/compound_stmts.html#the-if-statement
+- https://docs.python.org/3.5/library/stdtypes.html#truth-value-testing
+
 ##Comparison Functions
 ```python
 1 == 2

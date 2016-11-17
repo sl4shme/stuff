@@ -1,3 +1,6 @@
+##Links
+- http://treyhunner.com/2015/12/python-list-comprehensions-now-in-color/
+
 ##Problem
 Have you ever found yourself writing this:
 ```python
