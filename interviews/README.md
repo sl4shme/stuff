@@ -3,3 +3,5 @@
 - [_Battleship Solver_](battleship_solver.py)
 - [_Speed of dinosaurus_](speed_of_dinosaurus.py)
 - [_Rangoli_](rangoli.py)
+- [_Counting substring in a string with overlap_](counting_overlapping_substring_in_string.py)
+- [_Display missing numbers in a list_](missing_numbers_in_a_list.py)
