@@ -1,7 +1,9 @@
 ##Links
 - https://en.wikipedia.org/wiki/OSI_model
 
-# OSI model layers
+## OSI model layers
+
+![OSI](osi.png)
 
 ### Layer 1: Physical
 
@@ -57,7 +59,7 @@
 | --- | --- |
 | Role | Responsible of formating the data: translates, encrypts and compresses, ... |
 | Unit | Data |
-| Protocols | TLS / SSL (Encryption), ASCII, EBCDIC, TIFF, GIF, PICT, JPEG |
+| Protocols | TLS / SSL (Encryption) / ASCII / GIF / JPEG |
 
 
 ###Layer 7: Application
