@@ -1,6 +1,7 @@
 - [Development](development/)
   - [Algo](development/algo/)
   - [Bash](development/bash/)
+    - [_For line in file or pipe_](development/bash/for_line_in_file_of_pipe.md)
   - [Git](development/git/)
   - [Markdown](development/markdown/)
     - [_Cheatsheet_](development/markdown/markdown_cheatsheet.md)
