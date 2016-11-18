@@ -18,6 +18,6 @@
 - [Networking](networking/)
   - [Protocols](networking/protocols)
   - [_Default ports_](networking/default_ports.md)
-  - [_Osi model_](networking/osi.md)
+  - [_OSI model_](networking/osi.md)
 - [Software](software/)
 - [Interviews](interviews/)
