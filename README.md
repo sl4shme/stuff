@@ -13,6 +13,7 @@
     - [_Loops_](development/python/loops.md)
     - [_Types_](development/python/types.md)
     - [_Comprehension_](development/python/comprehension.md)
+    - [_Context managers_](development/python/context_managers.md)
 - [Linux](linux/)
   - [Commands](linux/commands/)
   - [System](linux/system/)
