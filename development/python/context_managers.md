@@ -56,9 +56,10 @@ with something_that_returns_a_context_manager() as my_resource:
 
 `with` allow us to call anything that returns a context manager (for example the
 `open()` function) and assign it to a variable using `as <variable_name>`.
+
 This variable only exists within the indented block below the with statement.
-Finaly, when this variable goes out of scope, a special method is called to
-cleanup the resource.
+When we leave the code block, a special method is called to cleanup the resource.
+
 This cleanup will happen even if the code block inside the `with` `raise` an
 exception, or `return`, or uses `continue` or `break`.
 
