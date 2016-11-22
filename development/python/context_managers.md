@@ -136,7 +136,7 @@ with ctx():
 
 ```python
 with ctx():
-    raise("Fail")
+    raise(Exception("Fail"))
 ```
 > haha <br/>
 > hoho <br/>
@@ -179,8 +179,8 @@ class Time_It():
         self.start_time = datetime.datetime.now()
  
     def __exit__(self, type, value, traceback):
-	duration = (datetime.datetime.now() - self.start_time).total_seconds()
-	print("It took: {} seconds".format(duration))
+        duration = (datetime.datetime.now() - self.start_time).total_seconds()
+        print("It took: {} seconds".format(duration))
 
 with Time_It():
     time.sleep(1)
