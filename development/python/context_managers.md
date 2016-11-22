@@ -1,6 +1,6 @@
 ##Links
  - https://jeffknupp.com/blog/2016/03/07/python-with-context-managers/
- - http://preshing.com/20110920/the-python-with-statement-by-example/
+
  - http://sametmax.com/les-context-managers-et-le-mot-cle-with-en-python/
  - https://gist.github.com/bradmontgomery/4f4934893388f971c6c5
  - http://effbot.org/zone/python-with-statement.htm
@@ -64,8 +64,8 @@ with something_that_returns_a_context_manager() as my_resource:
 This variable only exists within the indented block below the with statement.
 Finaly, when this variable goes out of scope, a special method is called to
 cleanup the resource.
-This cleanup will happen even if the code block inside the `with` raises an
-exception.
+This cleanup will happen even if the code block inside the `with` `raise` an
+exception, or `return`, or uses `continue` or `break`.
 
 Here is how to create a context manager that mimics `open()`
 ```python
@@ -96,6 +96,42 @@ with My_Context_manager("plop.txt") as f:
   - ...
 
 
+## Enter() and close()
+
+The __enter__() magic method of a context manager should not expect any
+parameter. What it return is what will be saved in the variable specified with
+the `as` keyword.
+
+Using `as` is not mandatory, in some case, we don't need to access the resource
+returned by the context manager (Lock for example).
+
+The __exit__() magic method should expect three arguments:
+ - type
+ - value
+ - traceback
+
+If the code in the with block exits without raising any exception, the value
+passed are None.
+
+Otherwise they contain informations about the exception (the same you would get
+by calling sys.exc_info).
+
+For example if we wanted to write a header and footer to a print, we could use:
+```python
+class ctx():
+    def __enter__(self):
+        print("haha")
+    def __exit__(self, *arg):
+        print("hoho")
+
+with ctx():
+	print("test")
+```
+> haha <br/>
+> test <br/>
+> hoho <br/>
+
+
 ## The contextlib
 
 The contextlib standard library module contains tooles for creating and working
@@ -121,8 +157,9 @@ with my_context_manager('plop.txt', 'w') as f:
     f.write("Plop !")
 ```
 
-The contextlib also contains a baseclass to inherit to create a context manager
-that can be used normaly with `with` or as a decorator to a function.
+The contextlib also contains a base class (Python 3 only) to inherit to create
+a context manager that can be used normaly with `with` or as a decorator to a
+function.
 
 ```python
 from contextlib import ContextDecorator
@@ -150,13 +187,3 @@ with kawaii():
 > .+.+.+.+.+.+.<br/>
 > Test <br/>
 > .+.+.+.+.+.+.<br/>
-
-
-
-
-
-
-
-
-What are the args passed to close ??? 
-is @contextmanager meant only to decorate generator fducntion ?
