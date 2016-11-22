@@ -24,7 +24,7 @@ on the maximum of file opened by a process at the same time (you can get he
 value with the command:  `ulimit -n`)
 
 When opening a file, the OS assigns an integer to the open file, giving you a
-handle to the open file, rather than access to the underlying file
+handle to the open file, rather than access to the underlying file.
 ```python
 f = open("plop.txt")
 print(f.fileno())
@@ -65,7 +65,6 @@ exception, or `return`, or uses `continue` or `break`.
 Here is how to create a context manager that mimics `open()`
 ```python
 class My_Context_Manager():
-
     def __init__(self, path, mode):
         self.path = path
         self.mode = mode
@@ -194,7 +193,7 @@ with Time_It():
 The contextlib standard library module contains tooles for creating and working
 with context managers.
 
-For example, it contains the @contextmanager decorator.
+For example, it contains the **@contextmanager** decorator.
 It is meant to decorate a generator function that calls yied exactly once.
 Everything before the call to `yield` is considered the  __enter__().
 Everything after is considered __exit__().
