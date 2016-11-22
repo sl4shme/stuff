@@ -1,11 +1,6 @@
 ##Links
  - https://jeffknupp.com/blog/2016/03/07/python-with-context-managers/
-
- - http://sametmax.com/les-context-managers-et-le-mot-cle-with-en-python/
- - https://gist.github.com/bradmontgomery/4f4934893388f971c6c5
- - http://effbot.org/zone/python-with-statement.htm
- - http://stackoverflow.com/questions/32379147/understanding-the-python-with-statement
- - https://docs.python.org/3.5/reference/datamodel.html#context-managers
+ - https://docs.python.org/3.5/library/stdtypes.html#typecontextmanager
 
 
 ## Example: Opening a file
@@ -110,13 +105,22 @@ The __exit__() magic method should expect three arguments:
  - value
  - traceback
 
-If the code in the with block exits without raising any exception, the value
-passed are None.
+If an exception occurred while in the code inside the `with` statement,
+the arguments contain the exception type, value and traceback information. 
+Otherwise, all three arguments are None.
 
-Otherwise they contain informations about the exception (the same you would get
-by calling sys.exc_info).
+If __exit__() returns True, it will cause the with statement to suppress the
+exception and continue execution.
+Otherwise the exception continues propagating after this method has finished
+executing.
+If an exception occurs in __exit__() it will replace the exception passed.
+The exception passed in should never be reraised explicitly, because it would
+be hard to debug if the exception happened inside the with statement or inside
+__exit__().
 
-For example if we wanted to write a header and footer to a print, we could use:
+## A few examples
+
+####Adding a header and footer to a print:
 ```python
 class ctx():
     def __enter__(self):
@@ -129,7 +133,60 @@ with ctx():
 ```
 > haha <br/>
 > test <br/>
+> hoho
+
+```python
+with ctx():
+    raise("Fail")
+```
+> haha <br/>
 > hoho <br/>
+> [...] Exception [...]
+
+
+####Safely manipulating current path
+```python
+import os
+ 
+class Cd():
+    def __init__(dirname):
+        self.dirname = dirname
+
+    def __enter__(self):
+        self.curdir = os.getcwd()
+        os.chdir(self.dirname)
+
+    def __exit__(self, type, value, traceback):
+        os.chdir(self.curdir) 
+
+print(os.getcwd())
+with Cd("/opt/"):
+    # Here do stuff in /opt/
+    print(os.getcwd())
+print(os.getcwd())
+```
+> /tmp/ <br/>
+> /opt/ <br/>
+> /tmp/
+
+
+####Timing excecution of code
+```python
+import time
+import datetime
+
+class Time_It():
+    def __enter__(self):
+        self.start_time = datetime.datetime.now()
+ 
+    def __exit__(self, type, value, traceback):
+	duration = (datetime.datetime.now() - self.start_time).total_seconds()
+	print("It took: {} seconds".format(duration))
+
+with Time_It():
+    time.sleep(1)
+```
+> It took: 1.001081 seconds
 
 
 ## The contextlib
