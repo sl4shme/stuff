@@ -69,7 +69,7 @@ exception.
 
 Here is how to create a context manager that mimics `open()`
 ```python
-class My_Context_manager():
+class My_Context_Manager():
 
     def __init__(self, path, mode):
         self.path = path
@@ -86,4 +86,77 @@ with My_Context_manager("plop.txt") as f:
     f.write("Plop !")
 ```
 
+ The standard library makes use of context managers in many places, basicaly
+ wherever an object needs to be closed after usage.
+ For example:
+  - threading.Lock
+  - subprocess.Popen
+  - tarfile.TarFile
+  - pathlib.Path
+  - ...
 
+
+## The contextlib
+
+The contextlib standard library module contains tooles for creating and working
+with context managers.
+
+For example, it contains the @contextmanager decorator.
+It is meant to decorate a generator function that calls yied exactly once.
+Everything before the call to `yield` is considered the  __enter__().
+Everything after is considered __exit__().
+
+Let's rewrite the previous example using this technique
+```python
+from contextlib import contextmanager
+
+@contextmanager
+def my_context_manager(path, mode):
+    the_file = open(path, mode)
+    yield the_file
+    the_file.close()
+
+
+with my_context_manager('plop.txt', 'w') as f:
+    f.write("Plop !")
+```
+
+The contextlib also contains a baseclass to inherit to create a context manager
+that can be used normaly with `with` or as a decorator to a function.
+
+```python
+from contextlib import ContextDecorator
+
+class kawaii(ContextDecorator):
+    def __enter__(self):
+        print('*.*.*.*.*.*.*.*.*.*')
+        return self
+
+    def __exit__(self, *arg):
+        print('*.*.*.*.*.*.*.*.*.*')
+        return False
+
+@kawaii()
+def print_plop():
+    print("Plop !")
+
+with kawaii():
+    print("Test")
+
+```
+> *.*.*.*.*.*.*.*.*.*
+> Plop !
+> *.*.*.*.*.*.*.*.*.*
+> *.*.*.*.*.*.*.*.*.*
+> Test
+> *.*.*.*.*.*.*.*.*.*
+
+
+
+
+
+
+
+
+What are the args passed to close ??? 
+is @contextmanager meant only to decorate generator fducntion ?
