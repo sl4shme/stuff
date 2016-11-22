@@ -23,8 +23,8 @@ Opening a file consumes a resource (File Descriptor) and the OS imposes a limit
 on the maximum of file opened by a process at the same time (you can get he
 value with the command:  `ulimit -n`)
 
-When opening a file, the OS assings an integer to the opem file, giving you a
-handle to the open file, rather than access to the underlying file>
+When opening a file, the OS assigns an integer to the open file, giving you a
+handle to the open file, rather than access to the underlying file
 ```python
 f = open("plop.txt")
 print(f.fileno())
@@ -35,9 +35,9 @@ To solve the issue, every `open()`-ed needs to be `close()`-ed.
 ```python
 files = []
 for x in range(10000):
-        f = open('plop.txt', 'w')
-            f.close()
-                files.append(f)
+    f = open('plop.txt', 'w')
+    f.close()
+    files.append(f)
 ```
 
 Sometime, it is hard to ensure that each file will be closed, especially when
