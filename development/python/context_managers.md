@@ -129,11 +129,11 @@ from contextlib import ContextDecorator
 
 class kawaii(ContextDecorator):
     def __enter__(self):
-        print('*.*.*.*.*.*.*.*.*.*')
+        print('.+.+.+.+.+.+.')
         return self
 
     def __exit__(self, *arg):
-        print('*.*.*.*.*.*.*.*.*.*')
+        print('.+.+.+.+.+.+.')
         return False
 
 @kawaii()
@@ -144,12 +144,12 @@ with kawaii():
     print("Test")
 
 ```
-> *.*.*.*.*.*.*.*.*.*
-> Plop !
-> *.*.*.*.*.*.*.*.*.*
-> *.*.*.*.*.*.*.*.*.*
-> Test
-> *.*.*.*.*.*.*.*.*.*
+> .+.+.+.+.+.+.<br/>
+> Plop ! <br/>
+> .+.+.+.+.+.+.<br/>
+> .+.+.+.+.+.+.<br/>
+> Test <br/>
+> .+.+.+.+.+.+.<br/>
 
 
 
