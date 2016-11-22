@@ -83,7 +83,7 @@ with My_Context_manager("plop.txt") as f:
 
  The standard library makes use of context managers in many places, basicaly
  wherever an object needs to be closed after usage.
- 
+
  For example:
   - threading.Lock
   - subprocess.Popen
@@ -107,13 +107,14 @@ The `__exit__()` magic method should expect three arguments:
  - traceback
 
 If an exception occurred while in the code inside the `with` statement,
-the arguments contain the exception type, value and traceback information. 
+the arguments contain the exception type, value and traceback information.
 Otherwise, all three arguments are None.
 
 If `__exit__()` returns True, it will cause the with statement to suppress the
 exception and continue execution.
 Otherwise the exception continues propagating after this method has finished
 executing.
+
 If an exception occurs in `__exit__()` it will replace the exception passed.
 The exception passed in should never be reraised explicitly, because it would
 be hard to debug if the exception happened inside the with statement or inside
@@ -148,7 +149,7 @@ with ctx():
 ####Safely manipulating current path
 ```python
 import os
- 
+
 class Cd():
     def __init__(dirname):
         self.dirname = dirname
@@ -158,7 +159,7 @@ class Cd():
         os.chdir(self.dirname)
 
     def __exit__(self, type, value, traceback):
-        os.chdir(self.curdir) 
+        os.chdir(self.curdir)
 
 print(os.getcwd())
 with Cd("/opt/"):
@@ -179,7 +180,7 @@ import datetime
 class Time_It():
     def __enter__(self):
         self.start_time = datetime.datetime.now()
- 
+
     def __exit__(self, type, value, traceback):
         duration = (datetime.datetime.now() - self.start_time).total_seconds()
         print("It took: {} seconds".format(duration))
