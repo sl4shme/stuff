@@ -92,16 +92,16 @@ with My_Context_manager("plop.txt") as f:
   - ...
 
 
-## Enter() and close()
+## `__Enter__()` and `__close__()`
 
-The \__enter__() magic method of a context manager should not expect any
+The `__enter__()` magic method of a context manager should not expect any
 parameter. What it return is what will be saved in the variable specified with
 the `as` keyword.
 
 Using `as` is not mandatory, in some case, we don't need to access the resource
 returned by the context manager (Lock for example).
 
-The \__exit__() magic method should expect three arguments:
+The `__exit__()` magic method should expect three arguments:
  - type
  - value
  - traceback
@@ -110,14 +110,14 @@ If an exception occurred while in the code inside the `with` statement,
 the arguments contain the exception type, value and traceback information. 
 Otherwise, all three arguments are None.
 
-If \__exit__() returns True, it will cause the with statement to suppress the
+If `__exit__()` returns True, it will cause the with statement to suppress the
 exception and continue execution.
 Otherwise the exception continues propagating after this method has finished
 executing.
-If an exception occurs in __exit__() it will replace the exception passed.
+If an exception occurs in `__exit__()` it will replace the exception passed.
 The exception passed in should never be reraised explicitly, because it would
 be hard to debug if the exception happened inside the with statement or inside
-__exit__().
+`__exit__()`.
 
 ## A few examples
 
