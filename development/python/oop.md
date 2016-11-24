@@ -68,10 +68,10 @@ print(Car.__module__)
 print(Car.__bases__)
 print(Car.__dict__)
 ```
-> Base class for all cars
-> Car
-> __main__
-> ()
+> Base class for all cars <br/>
+> Car <br/>
+> `__main__` <br/>
+> () <br/>
 > ```
 {'__doc__': 'Base class for all cars',
 '__init__': <function __main__.__init__>,
