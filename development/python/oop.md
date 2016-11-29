@@ -11,14 +11,6 @@
  - https://learnpythonthehardway.org/book/ex44.html#
  - https://www.programiz.com/python-programming/inheritance
 
-Super (new style class) Maybe super and MRO in another article
- - https://docs.python.org/2/library/functions.html#super
- - https://fuhm.net/super-harmful/
- - https://rhettinger.wordpress.com/2011/05/26/super-considered-super/
- - http://www.artima.com/weblogs/viewpost.jsp?thread=236275
- - http://stackoverflow.com/questions/576169/understanding-python-super-with-init-methods
-
-
 
 ##Basics
 ####Definition of a class
@@ -129,6 +121,16 @@ c.print_info()
 > I'm a Splash from Rinspeed. <br/>
 > There are 7 cars at the moment. #This was not incremented
 
+### New style class
+This is a class that inherits from `object`.
+```python
+Class Something(object):
+```
+
+This is done by default in Python3.
+
+"Old-style class" is only retained for backwards compatibility and should not be used.
+
 ###Calling parent's method
 ```python
 class Amphibious_Car(Car):
@@ -238,7 +240,7 @@ c.say()
 > `(<class '__main__.Class_2'>, <class '__main__.Class_3'>)` <br/>
 > Class_4
 
-If any class is duplicated in the MRO, it will be place after all the class that inherit from it.
+The sequence is ordered so that a class always appears before its parents, and if there are multiple parents, they keep the same order as the tuple of base classes.
 ```python
 class Class_1(object):
     def say(self):
@@ -260,8 +262,7 @@ print(Class_4.__mro__)
 ```
 > `(<class '__main__.Class_4'>, <class '__main__.Class_2'>, <class '__main__.Class_3'>, <class '__main__.Class_1'>, <class 'object'>)`
 
-Reality is a bit more complex that this and uses the _C3 Linearization algorithm_.
-If the MRO cannot be defined, an exception is raised.
+The computation of the MRO uses the _C3 Linearization algorithm_ and if it cannot be defined, an exception is raised.
 ```python
 class A(object): pass
 class B(object): pass
@@ -271,39 +272,66 @@ class Z(X, Y): pass
 ```
 > TypeError: Cannot create a consistent method resolution order (MRO) for bases B, A
 
-####Super
+###Super
+Super allows you to call methods of get attribute of parent class.
+It will locate the requested method or attribute in the parent classes checking them in the MRO order.
 
-## Private, _ __ ,  ... hiding ...
-
-## New style class
-This is a class that inherits from `object`.
+Python2:
 ```python
-Class Something(object):
+class base(object):
+    def p(self, m):
+        print("Base: {}".format(m))
+
+class child(base):
+    def p(self, m):
+        print("child")
+        super(child, self).p(m)
+
+class child_child(child):
+    def p(self, m):
+        print("child_child")
+        super(child_child, self).p(m)
+
+c = child_child()
+c.p("a")
+```
+> child_child <br/>
+> child <br/>
+> Base: a
+
+Python3 also allows this:
+```python
+class Base(object):
+    def __init__(self):
+        print "Base created"
+
+class Child(Base):
+    def __init__(self):
+        super().__init__()
 ```
 
-This is done by default in Python3.
+Accessing an attribute:
+```python
+class base(object):
+    plop = 5
 
-"Old-style class" is only retained for backwards compatibility and should not be used.
-
-
-Here is what is inherithed from the base object
-
------- > If too much put in another file
-
-
-
-
+class child(base):
+    def __init__(self):
+        print(super(child, self).plop)
+```
+> 5
 
 
 
-## Class methods and static methods and property and setter and deleter (decorator)
 
+## Private,\_ __ ,  ... hiding ...
 
 
 
 
 
-
+# Class methods ad static methods and property and setter and deleter (decorator)
+# The object object
 
 
 
