@@ -1,6 +1,7 @@
 ##Links
  - https://docs.python.org/2/tutorial/classes.html
  - https://www.tutorialspoint.com/python/python_classes_objects.htm
+ - https://en.wikipedia.org/wiki/C3_linearization
 
 
 
@@ -11,7 +12,6 @@
  - https://www.programiz.com/python-programming/inheritance
 
 Super (new style class) Maybe super and MRO in another article
- - http://python-history.blogspot.co.uk/2010/06/method-resolution-order.html
  - https://docs.python.org/2/library/functions.html#super
  - https://fuhm.net/super-harmful/
  - https://rhettinger.wordpress.com/2011/05/26/super-considered-super/
@@ -124,7 +124,7 @@ c = Amphibious_Car("Rinspeed", "Splash")
 print(c.on_water)
 c.print_info()
 ```
-> (\<class __main__.Car at 0x7f1da93406d0>,) <br/>
+> `(<class __main__.Car at 0x7f1da93406d0>,)` <br/>
 > False <br/>
 > I'm a Splash from Rinspeed. <br/>
 > There are 7 cars at the moment. #This was not incremented
@@ -164,7 +164,112 @@ class Amphibious_Car(Car):
  - `isinstance(obj, Class) returns True if _obj_ us an instance if _Class_
 
 ###Multiple inheritance
+```python
+class Parent_1(object):
+    def __init__(self):
+        self.test_1 = True
 
+    def say_1(self):
+        print("From Parent_1")
+
+class Parent_2(object):
+    def __init__(self):
+        self.test_2 = True
+
+    def say_2(self):
+        print("From Parent_2")
+
+class Child(Parent_1, Parent_2):
+    def __init__(self):
+		Parent_1.__init__(self)
+		Parent_2.__init__(self)
+
+    def say(self):
+        print("From Myself")
+
+print(Child.__bases__)
+
+c = Child()
+c.say()
+c.say_1()
+c.say_2()
+```
+> `(<class '__main__.Parent_1'>, <class '__main__.Parent_2'>)` <br/>
+> From Myself <br/>
+> From Parent_1 <br/>
+> From Parent_2
+
+Child inherits both from Parent_1 and Parent_2
+
+###Method Resolution Order (MRO)
+Methods are resolved in this order:
+- Child
+- First parent (most left in the class' definition)
+- First parent's parents
+- Second parent
+- Second parent's parents
+
+The MRO for a specific class is accessible through the `__mro__` attribute.
+```python
+class Class_1(object):
+    def say(self):
+        print("Class_1")
+
+class Class_2(Class_1):
+    def say(self):
+        print("Class_2")
+
+class Class_3(object):
+    def say(self):
+        print("Class_3")
+
+
+class Class_4(Class_2, Class_3):
+    def say(self):
+        print("Class_4")
+
+print(Class_4.__mro__)
+print(Class_4.__bases__)
+
+c = Class_4()
+c.say()
+```
+> `(<class '__main__.Class_4'>, <class '__main__.Class_2'>, <class '__main__.Class_1'>, <class '__main__.Class_3'>, <class 'object'>)` <br/>
+> `(<class '__main__.Class_2'>, <class '__main__.Class_3'>)` <br/>
+> Class_4
+
+If any class is duplicated in the MRO, it will be place after all the class that inherit from it.
+```python
+class Class_1(object):
+    def say(self):
+        print("Class_1")
+
+class Class_2(Class_1):
+    def say(self):
+        print("Class_2")
+
+class Class_3(Class_1):
+    def say(self):
+        print("Class_3")
+
+class Class_4(Class_2, Class_3):
+    def say(self):
+        print("Class_4")
+
+print(Class_4.__mro__)
+```
+> `(<class '__main__.Class_4'>, <class '__main__.Class_2'>, <class '__main__.Class_3'>, <class '__main__.Class_1'>, <class 'object'>)`
+
+Reality is a bit more complex that this and uses the _C3 Linearization algorithm_.
+If an MRO cannot be defined, an exception is raised.
+```python
+class A(object): pass
+class B(object): pass
+class X(A, B): pass
+class Y(B, A): pass
+class Z(X, Y): pass
+```
+> TypeError: Cannot create a consistent method resolution order (MRO) for bases B, A
 
 ####Super
 
@@ -176,9 +281,12 @@ This is a class that inherits from `object`.
 Class Something(object):
 ```
 
-This is done by default in Python3
+This is done by default in Python3.
 
-Here is what is inherithed from the base object 
+"Old-style class" is only retained for backwards compatibility and should not be used.
+
+
+Here is what is inherithed from the base object
 
 ------ > If too much put in another file
 
@@ -188,11 +296,7 @@ Here is what is inherithed from the base object
 
 
 
-
-
-
-
-
+## Class methods and static methods and property and setter and deleter (decorator)
 
 
 
