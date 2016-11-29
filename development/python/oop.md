@@ -161,7 +161,7 @@ class Amphibious_Car(Car):
 
 ###`issubclass` & `isinstance`
  - `issubclass(sub, sup)` returns True if _sub_ is a subclass of _sup_
- - `isinstance(obj, Class) returns True if _obj_ us an instance if _Class_
+ - `isinstance(obj, Class)` returns True if _obj_ us an instance of _Class_
 
 ###Multiple inheritance
 ```python
@@ -261,7 +261,7 @@ print(Class_4.__mro__)
 > `(<class '__main__.Class_4'>, <class '__main__.Class_2'>, <class '__main__.Class_3'>, <class '__main__.Class_1'>, <class 'object'>)`
 
 Reality is a bit more complex that this and uses the _C3 Linearization algorithm_.
-If an MRO cannot be defined, an exception is raised.
+If the MRO cannot be defined, an exception is raised.
 ```python
 class A(object): pass
 class B(object): pass
