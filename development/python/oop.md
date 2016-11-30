@@ -273,7 +273,7 @@ class Z(X, Y): pass
 > TypeError: Cannot create a consistent method resolution order (MRO) for bases B, A
 
 ###Super
-Super allows you to call methods of get attribute of parent class.
+Super allows you to call methods or get attribute of parent class.
 It will locate the requested method or attribute in the parent classes checking them in the MRO order.
 
 Python2:
@@ -321,79 +321,35 @@ class child(base):
 ```
 > 5
 
+Super also works from outside of the class definition:
+```python
+class Class_1(object):
+    def p(self):
+        print("From Class_1")
 
-
-
-## Private,\_ __ ,  ... hiding ...
-
+class Class_2(Class_1):
+    def p(self):
+        print("From Class_2")
+        
+i = Class_2()
+i.p()
+super(Class_2, i).p()
+```
+> From Class_2 <br/>
+> From Class_1
 
 
 
 
 # Class methods ad static methods and property and setter and deleter (decorator)
-# The object object
+@classmethod
+@staticmethod
+@property
+@setter
+@deleter
 
-
-
-
--------- MMEMEMOP
-
-
-
-
-
-
-# python classes
-import datetime
-class Employee(object):
-
-    """This is a base class to define employees    as a structure    """
-
-    """Class variables are shared among all instances of this class    """
-
-    company_name = 'HPE'
-    number_of_employees = 0
-    raise_amount = 1.4
-
-    def __init__(self, first_name, last_name):
-        """Initial attributes for the class        """
-        self.first_name = first_name
-        self.last_name = last_name
-
-        Employee.number_of_employees += 1
-
-    def email(self):
-        """This a public function for a class,        we can access this when the class gets        initialized.
-        self is the parameter need it to manage instance states
-        Returns: email for employee        """
-        return "{}.{}@hpe.com".format(self.first_name,
-                                      self._compose_last_name())
-
-    def _compose_last_name(self):
-        """This is a private method, python doesn't actually enforce it with language constrains        but using a single underscore is the standard by the community
-        Returns: last_name separated by "-" in case there are more than 1
-        """
-        last_name = self.last_name
-        if ' ' in last_name:
-            last_name = "-".join(last_name.split())
-        return last_name
-
-    def __protected_method(self):
-        """This is something called mangling and it allows you to avoid naming clashing between classes        and subclasses
-        at runtime it gets represented as _classname__protected_method        Returns:
-        """
-        return self
-
-    def role(self):
-        raise NotImplementedError('implement this')
-
-
-    def company(self):
-        return self.company_name
-
-    @classmethod
-    def set_raise_amount(cls, amount):
-        cls.raise_amount = amount
+_method (private, by convention)
+__method (protected method == > mangling)
 
     @classmethod
     def from_string(cls, employee_string):
@@ -414,53 +370,8 @@ class Employee(object):
             return False
         return True
 
-class Engineer(Employee):
-    """    This is a class that inherits from our base Employee class
-    """
-
-    def __init__(self, first_name, last_name, projects):
-        """Note that __init__ is not required because python looks on the chain        of inheritance, this is call resolution order.
-        type help(Engineer)
-        unfortunately we need to write again the same __init__ arguments from the parent class        """
-        super(self.__class__, self).__init__(first_name, last_name)
-        self.projects = projects
-
-    def role(self):
-        return 'Engineer'
+# The object object
 
 
-class Manager(Employee):
-    def role(self):
-        return 'Manager'
 
-    def team(self):
-        return []
 
-print(Employee.number_of_employees)
-# every instance of a class becomes a unique objectemployee_1 = Employee(first_name='juana', last_name='la cubana')employee_2 = Employee(first_name='pepe', last_name='el toro')
-print(employee_1)print(employee_2)
-print(Employee.number_of_employees)
-enginer_1 = Engineer('memo', 'garcia', projects='lol')print(enginer_1.company())
-employee_1.company_name = 'Cisco'print(employee_1.company())
-print(Employee.number_of_employees)
-emp_string_1 = 'memo-garcia'memo = Employee.from_string(emp_string_1)
-
-my_day = datetime.date(2016, 10, 4)print(Employee.is_work_day(my_day))
-print(help(Engineer))
-
-# Abstract classesfrom abc import ABCMeta, abstractmethod
-
-class BaseClass(object):
-    """When using an abstract class, all of its methods must be used.
-    an abstract class cannot be instantiated, just inherit    """
-    __metaclass__ = ABCMeta
-
-    @abstractmethod
-    def hello(self):
-        return 'world!'
-
-#b = BaseClass()#print(b.hello())
-class InheritBaseClass(BaseClass):
-    def hello(self):
-        return 'lol!'
-i = InheritBaseClass()print(i.hello())
