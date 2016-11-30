@@ -7,15 +7,12 @@
 
 ##To_Read
  - https://docs.python.org/2/tutorial/classes.html
- - https://www.google.co.uk/search?q=python+new+style+class&ie=utf-8&oe=utf-8&gws_rd=cr&ei=VXs4WO-pIoWJmQHIgYP4CQ
- - https://learnpythonthehardway.org/book/ex44.html#
- - https://www.programiz.com/python-programming/inheritance
 
 
 ##Basics
 ####Definition of a class
 ```python
-class Car():
+class Car(object):
     'Base class for all cars'
     number_of_cars = 4
 
@@ -37,7 +34,12 @@ class Car():
 ```python
 car1 = Car("Renault", "Clio")
 car2 = Car("Bentley", "Continental GT")
+
+type(Car)
+type(car1)
 ```
+> type <br/>
+> `__main__.Car`
 
 ####Accessing attributes and methods
 ```python
@@ -48,13 +50,16 @@ print(Car.number_of_cars)
 car1.model = "Test"
 
 car1.print_info()
+
+car1.color = "red"
+print(car1.color)
 ```
 > Renault <br/>
 > Bentley <br/>
 > 2 <br/>
 > I'm a Test from Renault. <br/>
-> There are 2 cars at the moment.
-
+> There are 2 cars at the moment. <br/>
+> red
 
 ## ...attr functions
 ```python
@@ -90,6 +95,47 @@ print(Car.__dict__)
 'accelerate': <function __main__.accelerate>,
 'number_of_cars': 4,
 'print_info': <function __main__.print_info>}
+```
+
+## Everything is an object
+```python
+a = 1
+a.__class__
+
+int.__class__
+
+a = lambda x: x
+a.__class__
+
+import sys
+sys.__class__
+
+```
+> int <br/>
+> type <br/>
+> function <br/>
+> module
+
+## Methods TODOTODOTODOTODOTODO
+```python
+class Test(object):
+    def __init__(self):
+    
+    def plop(self):
+
+    def _plop(self):
+        # By convention this method should not be accessed from outside the class.
+        pass
+
+    def __plop(self):
+        https://docs.python.org/2/tutorial/classes.html#private-variables-and-class-local-references
+        pass
+@classmethod
+@staticmethod
+@property
+@setter
+@deleter
+Class methods ad static methods and property and setter and deleter (decorator)
 ```
 
 ##Inheritance
@@ -225,7 +271,6 @@ class Class_3(object):
     def say(self):
         print("Class_3")
 
-
 class Class_4(Class_2, Class_3):
     def say(self):
         print("Class_4")
@@ -330,7 +375,7 @@ class Class_1(object):
 class Class_2(Class_1):
     def p(self):
         print("From Class_2")
-        
+
 i = Class_2()
 i.p()
 super(Class_2, i).p()
@@ -338,40 +383,29 @@ super(Class_2, i).p()
 > From Class_2 <br/>
 > From Class_1
 
+## The `object`
+```python
+Out[36]: 
+['__class__',
+ '__delattr__',
+ '__doc__',
+ '__format__',
+ '__getattribute__',
+ '__hash__',
+ '__init__',
+ '__new__',
+ '__reduce__',
+ '__reduce_ex__',
+ '__repr__',
+ '__setattr__',
+ '__sizeof__',
+ '__str__',
+ '__subclasshook__']
 
+In [37]: object.__mro__
+Out[37]: (object,)
 
+In [38]: object.__mro__
+```
 
-# Class methods ad static methods and property and setter and deleter (decorator)
-@classmethod
-@staticmethod
-@property
-@setter
-@deleter
-
-_method (private, by convention)
-__method (protected method == > mangling)
-
-    @classmethod
-    def from_string(cls, employee_string):
-        """Class methods takes as a first parameter a class        there is no need to instantiate the class to use this methods.
-        and they can be used to construct a class themselves
-        Args:            employee_string:
-        Returns:
-        """
-        first, last = employee_string.split('-')
-        return cls(first_name=first, last_name=last)
-
-    @staticmethod
-    def is_work_day(day):
-        """Static methods are like regular methods, they don't accept        self or cls as a parameter, but make sense to include them in the class        if they share some sort of logic.        Args:            day:
-        Returns:
-        """
-        if day.weekday == 5 or day.weekday == 6:
-            return False
-        return True
-
-# The object object
-
-
-
-
+##Surcharching operators

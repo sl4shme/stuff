@@ -1,17 +1,20 @@
-Magic methods et dir()
+THE object and Magic methods
+Exceptions / Assert / Stacktraces
 Common Modules
-Reference / id()
+Reference / id() / Garbage collector / maybe with scopes.
+Scope, Namespaces and global (and dir(), __builtins__.__dict__)(https://docs.python.org/2/tutorial/classes.html)
+clojure
+property
 File Objet
 kwargs and kargs
 Scoping
 Lambda
 objects (IPC) : mutex / pipes / systems sockets / signals
 Threading / Processes / Gil
-Generators/ Iterators / Yield / itertools
+Generators / Yield
+Iterators / itertools 
 Decorators
 Ctypes
-Stacktraces
-Exceptions
 map / reduce
 Standard library overview
 configparser
