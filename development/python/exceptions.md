@@ -4,7 +4,9 @@
 
 
 - https://www.programiz.com/python-programming/exception-handling
-- http://python-future.org/compatible_idioms.html
+- https://www.tutorialspoint.com/python/python_exceptions.htm
+- https://openclassrooms.com/courses/apprenez-a-programmer-en-python/les-exceptions-4
+- http://sametmax.com/gestion-des-erreurs-en-python/
 
 ##Exceptions
 When python encounters an error, it raises an exception.
@@ -63,17 +65,32 @@ functions_that_divides(1,0)
 > AssertionError: This is bad math
 
 ##Try, Except, Else, Finally
+Syntax:
 ```python
 try:
-    raise IndexError("This is an index error")
+    # Something that could fail
+except:
+    # What to do if it fails
+```
+
+Complete syntax:
+```python
+try:
+    Something that could fail
 except IndexError as e:
-    pass                 # Pass is just a no-op. Usually you would do recovery here.
+    # What we want to do if an IndexError happens in the try clause
+    raise e
 except (TypeError, NameError):
-    pass                 # Multiple exceptions can be handled together, if required.
-else:                    # Optional clause to the try/except block. Must follow all except blocks
-    print("All good!")   # Runs only if the code in try raises no exceptions
-finally:                 #  Execute under all circumstances
-    print("We can clean up resources here")
+    # We can group exception types
+    pass
+except:
+    # Or catch all exceptions
+    pass
+else:
+    # Runs only if the code in try raises no exceptions
+    # Must follow all except clause
+finally:
+    #  Executed under all circumstances
 ```
 
 ##Built-in exceptions
@@ -82,4 +99,8 @@ finally:                 #  Execute under all circumstances
 ##Exception objects
 
 
-##Stacktrace
+##Stacktrace and Traceback
+
+
+##Python2 and Python3
+- http://python-future.org/compatible_idioms.html
