@@ -12,6 +12,7 @@
     - [_Functions_](development/python/functions.md)
     - [_Loops_](development/python/loops.md)
     - [_Types_](development/python/types.md)
+    - [_Exceptions_](development/python/exceptions.md)
     - [_OOP_](development/python/oop.md)
     - [_Comprehension_](development/python/comprehension.md)
     - [_Context managers_](development/python/context_managers.md)

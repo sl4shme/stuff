@@ -1,6 +1,6 @@
 ##Links:
 - https://docs.python.org/2.7/tutorial/errors.html
-- https://docs.python.org/3/tutorial/errors.html 
+- https://docs.python.org/3/tutorial/errors.html
 
 
 - https://www.programiz.com/python-programming/exception-handling
@@ -9,8 +9,13 @@
 ##Exceptions
 When python encounters an error, it raises an exception.
 ```python
-
-Here insert exception example
+print(1 // 0)
+```
+> ```
+Traceback (most recent call last):
+  File "p.py", line 1, in <module>
+    print(1 // 0)
+ZeroDivisionError: integer division or modulo by zero
 ```
 
 ##Raising an exception
@@ -28,7 +33,7 @@ if something:
 	e = Exception("My exception's Message")   # base exception
     raise(e)
 	# Or in one line
-    raise(IndexError("My exception's Message"))   # speceific exception
+    raise(IndexError("My exception's Message"))   # specific exception
 ```
 > Exception: My exception's Message
 
@@ -49,7 +54,7 @@ assert <condition>[, <message>]
 
 Example:
 ```python
-def functions_that_divides(i, j)
+def functions_that_divides(i, j):
     assert j != 0, "This is bad math"
     return i // j
 
