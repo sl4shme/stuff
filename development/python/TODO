@@ -1,10 +1,11 @@
-THE object and Magic methods
-Exceptions / Assert / Stacktraces
+The object and Magic methods
 Common Modules
-Reference / id() / Garbage collector / maybe with scopes.
-Scope, Namespaces and global (and dir(), __builtins__.__dict__)(https://docs.python.org/2/tutorial/classes.html)
+Reference / id() / Garbage collector and the Python private heap space / maybe with scopes.
+Scope, Namespaces and global and py3 nonlocal (and dir(), __builtins__.__dict__)(https://docs.python.org/2/tutorial/classes.html and also py3)
 clojure
 property
+ternary operators 
+Math and the math library
 File Objet
 kwargs and kargs
 Scoping
@@ -48,4 +49,5 @@ Boolean Logic
 Functional programing and functools
 Weak reference
 Fabric / paramiko
+Type hints (static typing)
 Packaging: module / init / import / setup.py / venv pythonpath / pip / easy_install / egg/ wheel / setuptools
