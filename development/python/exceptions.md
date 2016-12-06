@@ -378,6 +378,37 @@ except ValueTooSmallError:
 ```
 
 ##Exception objects
+Most exceptions will pass a list of arguments that can be used when catching the exception.
+```python
+try:
+    f = open("plop")
+except IOError as e:
+    print("args: ", e.args)
+    print("errno: ", e.errno)
+    print("filename: ", e.filename)
+    print("strerror: ", e.strerror)
+```
+> ('args: ', (2, 'No such file or directory')) <br/>
+> ('errno: ', 2) <br/>
+> ('filename: ', 'plop') <br/>
+> ('strerror: ', 'No such file or directory')
+
+
+##Catch all exception of a program
+It is possible to catch all non managed (non catched) exception of a program using:
+```
+import sys
+
+def catch_them_all(type, value, traceback):
+    print("Pokemon !")
+
+sys.excepthook = catch_them_all
+
+1 / 0
+```
+> Pokemon !
+
+##Traceback module
 
 
 
