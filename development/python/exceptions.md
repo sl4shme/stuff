@@ -20,6 +20,17 @@ Traceback (most recent call last):
 ZeroDivisionError: integer division or modulo by zero
 ```
 
+```python
+if a == 3
+    print("Plop")
+```
+> ```
+  File "p.py", line 1
+    if a == 3
+            ^
+SyntaxError: invalid syntax
+```
+
 ##Raising an exception
 Exceptions are raise in two ocasions.
 
@@ -95,6 +106,211 @@ finally:
 
 ##Built-in exceptions
 
+Python comes with a multitude of built-in exceptions:
+| Name | Cause |
+| ---- | ----- |
+| ArithmeticError | The base class for those built-in exceptions that are raised for various arithmetic errors |
+| AssertionError | Raised when an assert statement fails |
+| AttributeError | Raised when attribute assignment or reference fails |
+| BaseException | The base class for all built-in exceptions. It is not meant to be directly inherited by user-defined exceptions |
+| BufferError | Raised when a buffer related operation cannot be performed |
+| EOFError| Raised when one of the built-in functions (input() or raw_input()) hits an end-of-file condition (EOF) without reading any data |
+| EnvironmentError | The base class for exceptions that can occur outside the Python system: IOError, OSError |
+| Exception | All built-in, non-system-exiting exceptions are derived from this class. All user-defined exceptions should also be derived from this class |
+| FloatingPointError | Raised when a floating point operation fails |
+| GeneratorExit | Raised when a generator‘s close() method is called, technically not an error |
+| IOError | Raised when an I/O operation (ex: print(), open()) fails for an I/O-related reason, e.g., “file not found” or “disk full” |
+| ImportError | Raised when an import statement fails to find the module definition or when a from ... import fails to find a name that is to be imported |
+| IndentationError | Base class for syntax errors related to incorrect indentation |
+| IndexError | Raised when a sequence subscript is out of range. (**Slice indices are silently truncated**) |
+| KeyError | Raised when a mapping (dictionary) key is not found in the set of existing keys |
+| KeyboardInterrupt | Raised when the user hits the interrupt key (normally Control-C) |
+| LookupError | The base class for the exceptions that are raised when a key or index used on a mapping or sequence is invalid |
+| MemoryError | Raised when an operation runs out of memory but the situation may still be rescued (by deleting some objects) |
+| NameError | Raised when a local or global name is not found |
+| NotImplementediError | Abstract methods should raise this exception when they require derived classes to override the method |
+| OSError | This exception is derived from EnvironmentError. It is raised when a function returns a system-related error |
+| OverflowError | Raised when the result of an arithmetic operation is too large to be represented |
+| ReferenceError | Raised when a weak reference proxy is used to access an attribute of the referent after it has been garbage collected |
+| RuntimeError | Raised when an error is detected that doesn’t fall in any of the other categories |
+| StopIteration | Raised by an iterator‘s next() method to signal that there are no further values |
+| SyntaxError | Raised when the parser encounters a syntax error |
+| SystemError | Raised when the interpreter finds an internal error, but the situation does not look so serious to cause it to abandon all hope |
+| SystemExit | Raised by the sys.exit() function. When it is not handled, the Python interpreter exits. If an int is passed, it will be the return code |
+| TabError | Raised when indentation contains an inconsistent use of tabs and spaces |
+| TypeError | Raised when an operation or function is applied to an object of inappropriate type |
+| UnboundLocalError | Raised when a reference is made to a local variable in a function or method, but no value has been bound to that variable |
+| UnicodeDecodeError | Raised when a Unicode-related error occurs during decoding |
+| UnicodeEncodeError | Raised when a Unicode-related error occurs during encoding |
+| UnicodeError | Raised when a Unicode-related encoding or decoding error occurs |
+| UnicodeTranslateError | Raised when a Unicode-related error occurs during translating |
+| ValueError | Raised when a built-in operation or function receives an argument that has the right type but an inappropriate value |
+| ZeroDivisionError | Raised when the second argument of a division or modulo operation is zero |
+
+Python2 Only
+| Name | Cause |
+| ---- | ----- |
+| ArithmeticError | The base class for those built-in exceptions that are raised for various arithmetic errors |
+| StandardError | The base class for all built-in *error* exceptions, itself is derived from Exception |
+
+Python3 Only
+| Name | Cause |
+| ---- | ----- |
+Warnings
+BlockingIOError
+BrokenPipeError
+ChildProcessError
+ConnectionAbortedError
+ConnectionError
+ConnectionRefusedError
+ConnectionResetError
+FileExistsError
+FileNotFoundError
+InterruptedError
+IsADirectoryError
+NotADirectoryError
+PermissionError
+ProcessLookupError
+RecursionError
+ResourceWarning
+StopAsyncIteration
+TimeoutError
+
+| BytesWarning | 
+| DeprecationWarning
+| FutureWarning |
+| ImportWarning
+| PendingDeprecationWarning
+| RuntimeWarning
+| SyntaxWarning
+| UnicodeWarning
+| UserWarning
+| Warning
+
+Python2 Hierarchy
+```
+BaseException
+ +-- SystemExit
+ +-- KeyboardInterrupt
+ +-- GeneratorExit
+ +-- Exception
+      +-- StopIteration
+      +-- StandardError
+      |    +-- BufferError
+      |    +-- ArithmeticError
+      |    |    +-- FloatingPointError
+      |    |    +-- OverflowError
+      |    |    +-- ZeroDivisionError
+      |    +-- AssertionError
+      |    +-- AttributeError
+      |    +-- EnvironmentError
+      |    |    +-- IOError
+      |    |    +-- OSError
+      |    |         +-- WindowsError (Windows)
+      |    |         +-- VMSError (VMS)
+      |    +-- EOFError
+      |    +-- ImportError
+      |    +-- LookupError
+      |    |    +-- IndexError
+      |    |    +-- KeyError
+      |    +-- MemoryError
+      |    +-- NameError
+      |    |    +-- UnboundLocalError
+      |    +-- ReferenceError
+      |    +-- RuntimeError
+      |    |    +-- NotImplementedError
+      |    +-- SyntaxError
+      |    |    +-- IndentationError
+      |    |         +-- TabError
+      |    +-- SystemError
+      |    +-- TypeError
+      |    +-- ValueError
+      |         +-- UnicodeError
+      |              +-- UnicodeDecodeError
+      |              +-- UnicodeEncodeError
+      |              +-- UnicodeTranslateError
+      +-- Warning
+           +-- DeprecationWarning
+           +-- PendingDeprecationWarning
+           +-- RuntimeWarning
+           +-- SyntaxWarning
+           +-- UserWarning
+           +-- FutureWarning
+           +-- ImportWarning
+           +-- UnicodeWarning
+           +-- BytesWarning
+```
+
+Python3 Hierarchy
+```
+BaseException
+ +-- SystemExit
+ +-- KeyboardInterrupt
+ +-- GeneratorExit
+ +-- Exception
+      +-- StopIteration
+      +-- StopAsyncIteration
+      +-- ArithmeticError
+      |    +-- FloatingPointError
+      |    +-- OverflowError
+      |    +-- ZeroDivisionError
+      +-- AssertionError
+      +-- AttributeError
+      +-- BufferError
+      +-- EOFError
+      +-- ImportError
+      +-- LookupError
+      |    +-- IndexError
+      |    +-- KeyError
+      +-- MemoryError
+      +-- NameError
+      |    +-- UnboundLocalError
+      +-- OSError
+      |    +-- BlockingIOError
+      |    +-- ChildProcessError
+      |    +-- ConnectionError
+      |    |    +-- BrokenPipeError
+      |    |    +-- ConnectionAbortedError
+      |    |    +-- ConnectionRefusedError
+      |    |    +-- ConnectionResetError
+      |    +-- FileExistsError
+      |    +-- FileNotFoundError
+      |    +-- InterruptedError
+      |    +-- IsADirectoryError
+      |    +-- NotADirectoryError
+      |    +-- PermissionError
+      |    +-- ProcessLookupError
+      |    +-- TimeoutError
+      +-- ReferenceError
+      +-- RuntimeError
+      |    +-- NotImplementedError
+      |    +-- RecursionError
+      +-- SyntaxError
+      |    +-- IndentationError
+      |         +-- TabError
+      +-- SystemError
+      +-- TypeError
+      +-- ValueError
+      |    +-- UnicodeError
+      |         +-- UnicodeDecodeError
+      |         +-- UnicodeEncodeError
+      |         +-- UnicodeTranslateError
+      +-- Warning
+           +-- DeprecationWarning
+           +-- PendingDeprecationWarning
+           +-- RuntimeWarning
+           +-- SyntaxWarning
+           +-- UserWarning
+           +-- FutureWarning
+           +-- ImportWarning
+           +-- UnicodeWarning
+           +-- BytesWarning
+           +-- ResourceWarning
+```
+
+
+##Creating your own exception
+
 
 ##Exception objects
 
@@ -103,4 +319,6 @@ finally:
 
 
 ##Python2 and Python3
+
+python2 standard error
 - http://python-future.org/compatible_idioms.html
