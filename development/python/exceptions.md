@@ -170,7 +170,7 @@ Traceback (most recent call last):
 
 ##Built-in exceptions
 
-Python comes with a multitude of built-in exceptions:
+####Python comes with a multitude of built-in exceptions
 
 | Name | Cause |
 | ---- | ----- |
@@ -212,13 +212,13 @@ Python comes with a multitude of built-in exceptions:
 | ValueError | Raised when a built-in operation or function receives an argument that has the right type but an inappropriate value |
 | ZeroDivisionError | Raised when the second argument of a division or modulo operation is zero |
 
-Python2 Only
+####Python2 Only
 
 | Name | Cause |
 | ---- | ----- |
 | StandardError | The base class for all built-in *error* exceptions, itself is derived from Exception |
 
-Python3 Only
+####Python3 Only
 
 | Name | Cause |
 | ---- | ----- |
@@ -240,7 +240,7 @@ Python3 Only
 | StopAsyncIteration | Must be raised by __anext__() method of an asynchronous iterator object to stop the iteration |
 | TimeoutError | Raised when a system function timed out at the system level |
 
-Python2 Hierarchy
+####Python2 Hierarchy
 ```
 BaseException
  +-- SystemExit
@@ -294,7 +294,7 @@ BaseException
            +-- BytesWarning
 ```
 
-Python3 Hierarchy
+####Python3 Hierarchy
 ```
 BaseException
  +-- SystemExit
@@ -425,6 +425,7 @@ sys.excepthook = catch_them_all
 Warning messages are typically issued in situations where it is useful to alert the user of some condition in a program, where that condition (normally) doesn’t warrant raising an exception
 and terminating the program. For example, one might want to issue a warning when a program uses an obsolete module.
 
+####`warn()`
 Warnings can be issued by calling the warn() function.
 ```python
 from warnings import warn
@@ -445,7 +446,7 @@ p.py:5: SyntaxWarning: test3
 Still executed
 ```
 
-Here is the list of Built-in warnings category:
+####Built-in warning categories
 
 | Name | Description |
 | ---- | ----------- |
@@ -468,7 +469,7 @@ The warnings filter controls whether warnings are ignored, displayed, or turned 
 warnings.simplefilter(action, category=Warning, lineno=0, append=False)
 ```
 
-action can be:
+####Action value
 
 | value | decription |
 | ----- | ---------- |
@@ -482,7 +483,7 @@ action can be:
 `resetwarnings` resets the warnings filter.
 ```python
 warnings.resetwarnings()
-````
+```
 
 ##Traceback and frame object
 Traceback objects represent a stack trace of an exception. A traceback object is created when an exception occurs. When the search for an exception handler unwinds the execution stack, at each unwound level a traceback object is inserted in front of the current traceback. When an exception handler is entered, the stack trace is made available to the program via `sys.exc_info()`. When the program contains no suitable handler, the stack trace is written (nicely formatted) to the standard error stream.
