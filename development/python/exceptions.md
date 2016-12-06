@@ -2,14 +2,20 @@
 - https://docs.python.org/2.7/tutorial/errors.html
 - https://docs.python.org/3/tutorial/errors.html
 
-
-- https://www.programiz.com/python-programming/exception-handling
-- https://www.tutorialspoint.com/python/python_exceptions.htm
-- https://openclassrooms.com/courses/apprenez-a-programmer-en-python/les-exceptions-4
-- http://sametmax.com/gestion-des-erreurs-en-python/
-
 ##Exceptions
 When python encounters an error, it raises an exception.
+This exception (if not catched) stops the execution of the program and tries to
+provide informations about what happened.
+
+Syntax of what is printed:
+```
+Traceback
+Traceback
+Traceback
+Traceback
+ExceptionName: Description of the problem
+```
+
 ```python
 print(1 // 0)
 ```
@@ -30,6 +36,36 @@ if a == 3
             ^
 SyntaxError: invalid syntax
 ```
+
+##Traceback
+Let's consider a python file:
+```
+def function_1():
+    return 1 / 0
+
+def function_2():
+    function_1()
+
+def function_3():
+    function_2()
+
+if __name__ == "__main__":
+    function_3()
+```
+> ```
+Traceback (most recent call last):
+  File "p.py", line 11, in <module>
+    function_3()
+  File "p.py", line 8, in function_3
+    function_2()
+  File "p.py", line 5, in function_2
+    function_1()
+  File "p.py", line 2, in function_1
+    return 1 / 0
+ZeroDivisionError: division by zero
+```
+
+A traceback is read from bottom to top and shows the chain of causality of the error.
 
 ##Raising an exception
 Exceptions are raise in two ocasions.
@@ -95,13 +131,35 @@ except (TypeError, NameError):
     # We can group exception types
     pass
 except:
-    # Or catch all exceptions
+    # Will catch all other exceptions
     pass
 else:
     # Runs only if the code in try raises no exceptions
     # Must follow all except clause
 finally:
     #  Executed under all circumstances
+```
+
+##Re-raising an exception
+```python
+try:
+    1 / 0
+except:
+    print("You can't do math")
+    raise
+```
+> ```
+You can't do math
+---------------------------------------------------------------------------
+ZeroDivisionError                         Traceback (most recent call last)
+<ipython-input-20-75a9956dfff4> in <module>()
+      1 try:
+----> 2     1 / 0
+      3 except:
+      4     print("You can't do math")
+      5     raise
+
+ZeroDivisionError: division by zero
 ```
 
 ##Built-in exceptions
@@ -159,7 +217,6 @@ Python3 Only
 | Name | Cause |
 | ---- | ----- |
 | Warnings | a |
-
 BlockingIOError
 BrokenPipeError
 ChildProcessError
@@ -179,7 +236,7 @@ ResourceWarning
 StopAsyncIteration
 TimeoutError
 
-| BytesWarning | 
+| BytesWarning |
 | DeprecationWarning
 | FutureWarning |
 | ImportWarning
@@ -191,7 +248,7 @@ TimeoutError
 | Warning
 
 Python2 Hierarchy
-```python
+```
 BaseException
  +-- SystemExit
  +-- KeyboardInterrupt
@@ -245,7 +302,7 @@ BaseException
 ```
 
 Python3 Hierarchy
-```python
+```
 BaseException
  +-- SystemExit
  +-- KeyboardInterrupt
@@ -311,14 +368,24 @@ BaseException
            +-- ResourceWarning
 ```
 
+##User defined exception
+Exceptions are created by inheriting the Exception class.
+```python
+class ValueTooSmallError(Exception):
+	"""Raised when input is too small for my program"""
+	pass
 
-##Creating your own exception
-
+i = input()
+try:
+	if i < 5:
+		raise(ValueTooSmallError)
+except ValueTooSmallError:
+    print("This is too small")
+```
 
 ##Exception objects
 
 
-##Stacktrace and Traceback
 
 
 ##Python2 and Python3
