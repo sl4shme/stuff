@@ -75,7 +75,7 @@ A traceback is read from bottom to top and shows the chain of causality of the e
 
 
 ##Raising an exception
-Exceptions are raise in two ocasions.
+Exceptions are raised in three ocasions.
 
 When an error happens:
 ```python
@@ -93,6 +93,7 @@ if something:
 ```
 > Exception: My exception's Message
 
+When using `assert`
 
 ##Assert
 Assert statements can be compared to a "raise-if-not" statements.
@@ -377,7 +378,7 @@ except ValueTooSmallError:
 ```
 
 ##Exception objects
-Most exceptions will pass a list of arguments that can be used when catching the exception.
+Most exceptions will be raised with a list of arguments that can be used when catching the exception.
 ```python
 try:
     f = open("plop")
@@ -462,7 +463,7 @@ Here is the list of Built-in warnings category:
 
 The warnings filter controls whether warnings are ignored, displayed, or turned into errors (raising an exception).
 
-Simplefilter inserts an entry into the list of warnings filter specifications. The entry is inserted at the front by default; if append is true, it is inserted at the end.
+`simplefilter` inserts an entry into the list of warnings filter specifications. The entry is inserted at the front by default; if append is true, it is inserted at the end.
 ```python
 warnings.simplefilter(action, category=Warning, lineno=0, append=False)
 ```
@@ -478,17 +479,17 @@ action can be:
 | module | print the first occurrence of matching warnings for each module where the warning is issued |
 | once | print only the first occurrence of matching warnings, regardless of location |
 
-Resetwarnings resets the warnings filter.
+`resetwarnings` resets the warnings filter.
 ```python
 warnings.resetwarnings()
 ````
 
 ##Traceback and frame object
-Traceback objects represent a stack trace of an exception. A traceback object is created when an exception occurs. When the search for an exception handler unwinds the execution stack, at each unwound level a traceback object is inserted in front of the current traceback. When an exception handler is entered, the stack trace is made available to the program. It is accessible as the third item of the tuple returned by `sys.exc_info()`. When the program contains no suitable handler, the stack trace is written (nicely formatted) to the standard error stream.
+Traceback objects represent a stack trace of an exception. A traceback object is created when an exception occurs. When the search for an exception handler unwinds the execution stack, at each unwound level a traceback object is inserted in front of the current traceback. When an exception handler is entered, the stack trace is made available to the program via `sys.exc_info()`. When the program contains no suitable handler, the stack trace is written (nicely formatted) to the standard error stream.
 
 `sys.exc_info()` returns a tuple with (Type, Value, Traceback)
 
-The traceback module provides tools to print tracebacks:
+####Printing a tracebacks
 ```python
 import sys
 import traceback
@@ -504,7 +505,7 @@ except:
     raise Exception("plop")
 ```
 
-Printing an exception:
+####Printing an exception
 ```python
 import sys
 import traceback
@@ -522,9 +523,10 @@ Traceback (most recent call last):
 ValueError: something
 ```
 
+####`exc_clear`
 `sys.exc_clear()` Clears the current exception. exc_info() will return 3 None until the next exception.
 
-Printing the a traceback for specific point in the code:
+####Printing the traceback for a specific point in the code
 ```python
 import traceback
 
@@ -545,7 +547,7 @@ f2()
     traceback.print_stack()
 ```
 
-Accessing a traceback's attributes:
+####Accessing a traceback's attributes
 - traceback.tb_next   # Next level in the stack trace (towards the frame where the exception occurred)
 - traceback.tb_frame  # Frame object at the current level
 - traceback.tb_lineno # Line number where the exception occured
@@ -602,7 +604,7 @@ The call stack is structure used by the interpretor to keep track of the point t
   [f1()]
 ```
 
-Attributes:
+####Attributes
 - f_builtins    # Built-in namespace seen by this frame
 - f_globals     # Global namespace seen by this frame
 - f_locals 	    # Local namespace seen by this frame
