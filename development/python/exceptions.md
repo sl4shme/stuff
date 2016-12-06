@@ -490,7 +490,7 @@ Traceback objects represent a stack trace of an exception. A traceback object is
 
 `sys.exc_info()` returns a tuple with (Type, Value, Traceback)
 
-####Printing a tracebacks
+####Printing a traceback
 ```python
 import sys
 import traceback
@@ -549,10 +549,10 @@ f2()
 ```
 
 ####Accessing a traceback's attributes
-- traceback.tb_next   # Next level in the stack trace (towards the frame where the exception occurred)
-- traceback.tb_frame  # Frame object at the current level
-- traceback.tb_lineno # Line number where the exception occured
-- traceback.tb_lasti  # Index of last attempted instruction in bytecode
+- **traceback.tb_next**: Next level in the stack trace (towards the frame where the exception occurred)
+- **traceback.tb_frame**: Frame object at the current level
+- **traceback.tb_lineno**: Line number where the exception occured
+- **traceback.tb_lasti**: Index of last attempted instruction in bytecode
 
 ```python
  1 import sys                   
@@ -572,7 +572,7 @@ f2()
 15         print(t.tb_frame)    
 16         print(t.tb_lineno)   
 17         print(t.tb_next)     
-18         print()              
+18         print("__")              
 19         if t.tb_next is None:
 20             break            
 21         else:                
@@ -583,12 +583,12 @@ f2()
 <frame object at 0x7f01cccd6828>
 10
 <traceback object at 0x7f01ccbc0688>
-
+__
 <traceback object at 0x7f01ccbc0688>
 <frame object at 0x2072628>
 7
 <traceback object at 0x7f01ccbc0648>
-
+__
 <traceback object at 0x7f01ccbc0648>
 <frame object at 0x7f01cccee448>
 4
@@ -606,10 +606,10 @@ The call stack is structure used by the interpretor to keep track of the point t
 ```
 
 ####Attributes
-- f_builtins    # Built-in namespace seen by this frame
-- f_globals     # Global namespace seen by this frame
-- f_locals 	    # Local namespace seen by this frame
-- f_back 	    # Next outer frame object (this frame’s caller)
-- f_lineno 	    # Current line number in Python source code
-- f_code 	    # Code object being executed in this frame
-- f_lasti 	    # Index of last attempted instruction in bytecode
+- **f_builtins**: Built-in namespace seen by this frame
+- **f_globals**: Global namespace seen by this frame
+- **f_locals**: Local namespace seen by this frame
+- **f_back**: Next outer frame object (this frame’s caller)
+- **f_lineno**: Current line number in Python source code
+- **f_code**: Code object being executed in this frame
+- **f_lasti**: Index of last attempted instruction in bytecode
