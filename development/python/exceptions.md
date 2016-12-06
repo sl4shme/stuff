@@ -410,10 +410,9 @@ sys.excepthook = catch_them_all
 
 ##Traceback module
 
-
-
+- https://docs.python.org/2/library/traceback.html
+- https://docs.python.org/3.5/library/traceback.html
 
 ##Python2 and Python3
 
-python2 standard error
 - http://python-future.org/compatible_idioms.html
