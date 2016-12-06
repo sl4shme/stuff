@@ -107,6 +107,7 @@ finally:
 ##Built-in exceptions
 
 Python comes with a multitude of built-in exceptions:
+
 | Name | Cause |
 | ---- | ----- |
 | ArithmeticError | The base class for those built-in exceptions that are raised for various arithmetic errors |
@@ -148,15 +149,17 @@ Python comes with a multitude of built-in exceptions:
 | ZeroDivisionError | Raised when the second argument of a division or modulo operation is zero |
 
 Python2 Only
+
 | Name | Cause |
 | ---- | ----- |
-| ArithmeticError | The base class for those built-in exceptions that are raised for various arithmetic errors |
 | StandardError | The base class for all built-in *error* exceptions, itself is derived from Exception |
 
 Python3 Only
+
 | Name | Cause |
 | ---- | ----- |
-Warnings
+| Warnings | a |
+
 BlockingIOError
 BrokenPipeError
 ChildProcessError
@@ -188,7 +191,7 @@ TimeoutError
 | Warning
 
 Python2 Hierarchy
-```
+```python
 BaseException
  +-- SystemExit
  +-- KeyboardInterrupt
@@ -242,7 +245,7 @@ BaseException
 ```
 
 Python3 Hierarchy
-```
+```python
 BaseException
  +-- SystemExit
  +-- KeyboardInterrupt
