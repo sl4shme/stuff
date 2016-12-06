@@ -150,16 +150,10 @@ except:
 ```
 > ```
 You can't do math
----------------------------------------------------------------------------
-ZeroDivisionError                         Traceback (most recent call last)
-<ipython-input-20-75a9956dfff4> in <module>()
-      1 try:
-----> 2     1 / 0
-      3 except:
-      4     print("You can't do math")
-      5     raise
-
-ZeroDivisionError: division by zero
+Traceback (most recent call last):
+  File "p.py", line 2, in <module>
+      1 / 0
+      ZeroDivisionError: division by zero
 ```
 
 ##Built-in exceptions
