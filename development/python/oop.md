@@ -6,7 +6,14 @@
 
 
 ##To_Read
- - https://docs.python.org/2/tutorial/classes.html
+- https://docs.python.org/2/tutorial/classes.html
+- https://www.python.org/download/releases/2.2.3/descrintro/
+- https://docs.python.org/2/reference/datamodel.html
+- https://docs.python.org/3/reference/datamodel.html
+- http://www.cafepy.com/article/python_types_and_objects/python_types_and_objects.html
+- http://stackoverflow.com/questions/114214/class-method-differences-in-python-bound-unbound-and-static
+- http://stackoverflow.com/questions/11949808/what-is-the-difference-between-a-function-an-unbound-method-and-a-bound-method
+- https://www.programiz.com/article/python-self-why
 
 
 ##Basics

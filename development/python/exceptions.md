@@ -2,6 +2,10 @@
 - https://docs.python.org/2.7/tutorial/errors.html
 - https://docs.python.org/3/tutorial/errors.html
 - https://docs.python.org/3.5/library/warnings.html
+- https://docs.python.org/2/library/traceback.html
+- https://docs.python.org/3/reference/datamodel.html
+- http://stackoverflow.com/a/23849060
+
 
 ##Exceptions
 When python encounters an error, it raises an exception.
@@ -38,6 +42,7 @@ if a == 3
 SyntaxError: invalid syntax
 ```
 
+
 ##Traceback
 Let's consider a python file:
 ```
@@ -68,6 +73,7 @@ ZeroDivisionError: division by zero
 
 A traceback is read from bottom to top and shows the chain of causality of the error.
 
+
 ##Raising an exception
 Exceptions are raise in two ocasions.
 
@@ -86,6 +92,7 @@ if something:
     raise(IndexError("My exception's Message"))   # specific exception
 ```
 > Exception: My exception's Message
+
 
 ##Assert
 Assert statements can be compared to a "raise-if-not" statements.
@@ -111,6 +118,7 @@ def functions_that_divides(i, j):
 functions_that_divides(1,0)
 ```
 > AssertionError: This is bad math
+
 
 ##Try, Except, Else, Finally
 Syntax:
@@ -141,6 +149,7 @@ finally:
     #  Executed under all circumstances
 ```
 
+
 ##Re-raising an exception
 ```python
 try:
@@ -156,6 +165,7 @@ Traceback (most recent call last):
       1 / 0
       ZeroDivisionError: division by zero
 ```
+
 
 ##Built-in exceptions
 
@@ -211,25 +221,23 @@ Python3 Only
 
 | Name | Cause |
 | ---- | ----- |
-| Warnings | _ |
-| BlockingIOError | _ |
-| BrokenPipeError | _ | 
-| ChildProcessError | _ | 
-| ConnectionAbortedError | _ | 
-| ConnectionError | _ | 
-| ConnectionRefusedError | _ | 
-| ConnectionResetError | _ | 
-| FileExistsError | _ | 
-| FileNotFoundError | _ | 
-| InterruptedError | _ | 
-| IsADirectoryError | _ | 
-| NotADirectoryError | _ | 
-| PermissionError | _ | 
-| ProcessLookupError | _ | 
-| RecursionError | _ | 
-| ResourceWarning | _ | 
-| StopAsyncIteration | _ | 
-| TimeoutError | _ | 
+| BlockingIOError | Raised when an operation would block on an object (e.g.socket) set for non-blocking operation |
+| BrokenPipeError | A subclass of ConnectionError, raised when trying to write on a pipe while the other end has been closed, or trying to write on a socket which has been shutdown for writing |
+| ChildProcessError | Raised when an operation on a child process failed |
+| ConnectionAbortedError | A subclass of ConnectionError, raised when a connection attempt is aborted by the peer |
+| ConnectionError | A base class for connection-related issues |
+| ConnectionRefusedError | A subclass of ConnectionError, raised when a connection attempt is refused by the peer |
+| ConnectionResetError | A subclass of ConnectionError, raised when a connection is reset by the peer |
+| FileExistsError | Raised when trying to create a file or directory which already exists |
+| FileNotFoundError | Raised when a file or directory is requested but doesn’t exist |
+| InterruptedError | Raised when a system call is interrupted by an incoming signal |
+| IsADirectoryError | Raised when a file operation (such as os.remove()) is requested on a directory |
+| NotADirectoryError | Raised when a directory operation (such as os.listdir()) is requested on something which is not a directory |
+| PermissionError | Raised when trying to run an operation without the adequate access rights |
+| ProcessLookupError | Raised when a given process doesn’t exist |
+| RecursionError | This exception is derived from RuntimeError. It is raised when the interpreter detects that the maximum recursion depth is exceeded |
+| StopAsyncIteration | Must be raised by __anext__() method of an asynchronous iterator object to stop the iteration |
+| TimeoutError | Raised when a system function timed out at the system level |
 
 Python2 Hierarchy
 ```
@@ -352,6 +360,7 @@ BaseException
            +-- ResourceWarning
 ```
 
+
 ##User defined exception
 Exceptions are created by inheriting the Exception class.
 ```python
@@ -409,9 +418,10 @@ sys.excepthook = catch_them_all
 ```
 > Pokemon !
 
+
 ##Warnings
 
-Warning messages are typically issued in situations where it is useful to alert the user of some condition in a program, where that condition (normally) doesn’t warrant raising an exception 
+Warning messages are typically issued in situations where it is useful to alert the user of some condition in a program, where that condition (normally) doesn’t warrant raising an exception
 and terminating the program. For example, one might want to issue a warning when a program uses an obsolete module.
 
 Warnings can be issued by calling the warn() function.
@@ -473,12 +483,130 @@ Resetwarnings resets the warnings filter.
 warnings.resetwarnings()
 ````
 
+##Traceback and frame object
+Traceback objects represent a stack trace of an exception. A traceback object is created when an exception occurs. When the search for an exception handler unwinds the execution stack, at each unwound level a traceback object is inserted in front of the current traceback. When an exception handler is entered, the stack trace is made available to the program. It is accessible as the third item of the tuple returned by `sys.exc_info()`. When the program contains no suitable handler, the stack trace is written (nicely formatted) to the standard error stream.
 
-##Traceback module
+`sys.exc_info()` returns a tuple with (Type, Value, Traceback)
 
-- https://docs.python.org/2/library/traceback.html
-- https://docs.python.org/3.5/library/traceback.html
+The traceback module provides tools to print tracebacks:
+```python
+import sys
+import traceback
 
-##Python2 and Python3
+try:
+    raise Exception("plop")
+except:
+    t = sys.exc_info()[2]
+    traceback.print_tb(t)
+```
+> ```
+  File "<ipython-input-13-66fc82f1d301>", line 5, in <module>
+    raise Exception("plop")
+```
 
-- http://python-future.org/compatible_idioms.html#raising-exceptions
+Printing an exception:
+```python
+import sys
+import traceback
+
+try:
+    raise Exception("plop")
+except:
+    t = sys.exc_info()[2]
+    traceback.print_exception(ValuerError, "something", t)
+```
+> ```
+Traceback (most recent call last):
+  File "<ipython-input-16-1b6fac1acc52>", line 5, in <module>
+    raise Exception("plop")
+ValueError: something
+```
+
+`sys.exc_clear()` Clears the current exception. exc_info() will return 3 None until the next exception.
+
+Printing the a traceback for specific point in the code:
+```python
+import traceback
+
+def f1():
+    traceback.print_stack()
+
+def f2():
+    f1()
+
+f2()
+```
+> ```
+  File "p.py", line 9, in <module>
+    f2()
+  File "p.py", line 7, in f2
+    f1()
+  File "p.py", line 4, in f1
+    traceback.print_stack()
+```
+
+Accessing a traceback's attributes:
+- traceback.tb_next   # Next level in the stack trace (towards the frame where the exception occurred)
+- traceback.tb_frame  # Frame object at the current level
+- traceback.tb_lineno # Line number where the exception occured
+- traceback.tb_lasti  # Index of last attempted instruction in bytecode
+
+```python
+ 1 import sys                   
+ 2                              
+ 3 def f1():                    
+ 4     1 / 0                    
+ 5                              
+ 6 def f2():                    
+ 7     f1()                     
+ 8                              
+ 9 try:                         
+10     f2()                     
+11 except:                      
+12     t = sys.exc_info()[2]    
+13     while True:              
+14         print(t)             
+15         print(t.tb_frame)    
+16         print(t.tb_lineno)   
+17         print(t.tb_next)     
+18         print()              
+19         if t.tb_next is None:
+20             break            
+21         else:                
+22             t = t.tb_next    
+```
+> ```
+<traceback object at 0x7f01ccbc06c8>
+<frame object at 0x7f01cccd6828>
+10
+<traceback object at 0x7f01ccbc0688>
+
+<traceback object at 0x7f01ccbc0688>
+<frame object at 0x2072628>
+7
+<traceback object at 0x7f01ccbc0648>
+
+<traceback object at 0x7f01ccbc0648>
+<frame object at 0x7f01cccee448>
+4
+None
+```
+
+
+## Frame objects
+When we're in f1(), there are 3 frames on the call stack.
+The call stack is structure used by the interpretor to keep track of the point to which each active subroutine should return control when it finishes executing.
+```
+[top level]
+ [f2()]
+  [f1()]
+```
+
+Attributes:
+- f_builtins    # Built-in namespace seen by this frame
+- f_globals     # Global namespace seen by this frame
+- f_locals 	    # Local namespace seen by this frame
+- f_back 	    # Next outer frame object (this frame’s caller)
+- f_lineno 	    # Current line number in Python source code
+- f_code 	    # Code object being executed in this frame
+- f_lasti 	    # Index of last attempted instruction in bytecode

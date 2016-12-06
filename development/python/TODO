@@ -4,6 +4,11 @@ Reference / id() / Garbage collector and the Python private heap space / maybe w
 Scope, Namespaces and global and py3 nonlocal (and dir(), __builtins__.__dict__)(https://docs.python.org/2/tutorial/classes.html and also py3)
 clojure
 property
+    https://www.programiz.com/python-programming/property
+    http://www.python-course.eu/python3_properties.php
+    http://stackabuse.com/python-properties/
+descriptor
+    http://users.rcn.com/python/download/Descriptor.htm
 ternary operators 
 Math and the math library
 File Objet
@@ -34,9 +39,12 @@ Sockets
 Api rest models
 Queues
 Unit testing and mock
+    http://sametmax.com/se-simplifier-les-tests-python-avec-pytest/
+    http://sametmax.com/un-gros-guide-bien-gras-sur-les-tests-unitaires-en-python-partie-1/
 Web framework: Django, flask, webop , mvc
 coroutines / async
 asyncio
+    https://community.nitrous.io/tutorials/asynchronous-programming-with-python-3
 Twisted
 Deamoning
 schedulers : celery and apscheduler
@@ -51,3 +59,4 @@ Weak reference
 Fabric / paramiko
 Type hints (static typing)
 Packaging: module / init / import / setup.py / venv pythonpath / pip / easy_install / egg/ wheel / setuptools
+Inspect
