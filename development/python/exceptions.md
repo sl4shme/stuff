@@ -191,6 +191,7 @@ Traceback (most recent call last):
     raise e
 ZeroDivisionError: integer division or modulo by zero
 ```
+
 In Python (especialy v2), it's the interpretor's job to capture the traceback when an exception happends. The exception does not carry their own stacktrace.
 
 When using `raise`, we just specify to continue raising the exception. When using `raise e`, a new exception is raised and the interpretor captures the traceback for this point.
