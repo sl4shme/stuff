@@ -154,8 +154,11 @@ finally:
 ##Re-raising an exception
 The correct way:
 ```python
-try:
+def do_something_bad():
     1 / 0
+
+try:
+    do_something_bad()
 except ZeroDivisionError as e:
     print("You can't do math")
     raise
@@ -163,15 +166,20 @@ except ZeroDivisionError as e:
 > ```
 You can't do math
 Traceback (most recent call last):
-  File "p.py", line 2, in <module>
-      1 / 0
-      ZeroDivisionError: division by zero
+  File "p.py", line 5, in <module>
+    do_something_bad()
+  File "p.py", line 2, in do_something_bad
+    1 / 0
+ZeroDivisionError: integer division or modulo by zero
 ```
 
-The wrong way (a new exception is raised):
+The wrong way:
 ```python
-try:
+def do_something_bad():
     1 / 0
+
+try:
+    do_something_bad()
 except ZeroDivisionError as e:
     print("You can't do math")
     raise e
@@ -179,12 +187,13 @@ except ZeroDivisionError as e:
 > ```
 You can't do math
 Traceback (most recent call last):
-  File "p.py", line 5, in <module>
+  File "p.py", line 8, in <module>
     raise e
-  File "p.py", line 2, in <module>
-    1 / 0
-ZeroDivisionError: division by zero
+ZeroDivisionError: integer division or modulo by zero
 ```
+In Python (especialy v2), it's the interpretor's job to capture the traceback when an exception happends. The exception does not carry their own stacktrace.
+
+When using `raise`, we just specify to continue raising the exception. When using `raise e`, a new exception is raised and the interpretor captures the traceback for this point.
 
 ##Built-in exceptions
 
