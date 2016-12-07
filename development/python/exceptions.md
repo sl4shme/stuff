@@ -152,10 +152,11 @@ finally:
 
 
 ##Re-raising an exception
+The correct way:
 ```python
 try:
     1 / 0
-except:
+except ZeroDivisionError as e:
     print("You can't do math")
     raise
 ```
@@ -167,6 +168,23 @@ Traceback (most recent call last):
       ZeroDivisionError: division by zero
 ```
 
+The wrong way (a new exception is raised):
+```python
+try:
+    1 / 0
+except ZeroDivisionError as e:
+    print("You can't do math")
+    raise e
+```
+> ```
+You can't do math
+Traceback (most recent call last):
+  File "p.py", line 5, in <module>
+    raise e
+  File "p.py", line 2, in <module>
+    1 / 0
+ZeroDivisionError: division by zero
+```
 
 ##Built-in exceptions
 
@@ -369,12 +387,21 @@ class ValueTooSmallError(Exception):
 	"""Raised when input is too small for my program"""
 	pass
 
-i = input()
+i = int(input())
 try:
 	if i < 5:
 		raise(ValueTooSmallError)
 except ValueTooSmallError:
     print("This is too small")
+	raise
+```
+>```
+1
+This is too small
+Traceback (most recent call last):
+  File "p.py", line 8, in <module>
+    raise(ValueTooSmallError("Too small", i))
+__main__.ValueTooSmallError: ('Too small', 1)
 ```
 
 ##Exception objects
