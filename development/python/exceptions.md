@@ -192,9 +192,9 @@ Traceback (most recent call last):
 ZeroDivisionError: integer division or modulo by zero
 ```
 
-In Python (especialy v2), it's the interpretor's job to capture the traceback when an exception happends. Exceptions don't carry their own stacktrace.
+In Python (especialy v2), it's the interpreter's job to capture the traceback when an exception happends. Exceptions don't carry their own stacktrace.
 
-When using `raise`, we just specify to continue raising the exception. When using `raise e`, a new exception is raised and the interpretor captures the traceback for this point.
+When using `raise`, we just specify to continue raising the exception. When using `raise e`, a new exception is raised and the interpreter captures the traceback for this point.
 
 ##Built-in exceptions
 
@@ -635,7 +635,7 @@ None
 
 ## Frame objects
 When we're in f1(), there are 3 frames on the call stack.
-The call stack is structure used by the interpretor to keep track of the point to which each active subroutine should return control when it finishes executing.
+The call stack is structure used by the interpreter to keep track of the point to which each active subroutine should return control when it finishes executing.
 ```
 [top level]
  [f2()]
