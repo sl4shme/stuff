@@ -1,7 +1,13 @@
 The object and Magic methods
-Common Modules
+Modules:
+    https://docs.python.org/3/library/modules.html
+Stdlib:
+    https://docs.python.org/3/tutorial/stdlib.html
+    https://docs.python.org/3/tutorial/stdlib2.html
 Reference / id() / Garbage collector and the Python private heap space / maybe with scopes.
-Scope, Namespaces and global and py3 nonlocal (and dir(), __builtins__.__dict__)(https://docs.python.org/2/tutorial/classes.html and also py3)
+    https://docs.python.org/3/library/gc.html
+Scope, Namespaces and global and py3 nonlocal (and dir(), __builtins__.__dict__)
+    https://docs.python.org/2/tutorial/classes.html and also py3 version
 clojure
 property
     https://www.programiz.com/python-programming/property
@@ -9,6 +15,11 @@ property
     http://stackabuse.com/python-properties/
 descriptor
     http://users.rcn.com/python/download/Descriptor.htm
+    https://docs.python.org/3/howto/descriptor.html
+Memory in Python
+    https://docs.python.org/3/c-api/memory.html
+    http://www.evanjones.ca/memoryallocator/
+    https://docs.python.org/3/c-api/index.html
 ternary operators 
 Math and the math library
 File Objet
@@ -29,12 +40,17 @@ Datetime / time / tiemstamp
 Python 2  3 and six , abc
 Metaclasses
 Logging
+    https://docs.python.org/3/howto/logging.html
+    https://docs.python.org/3/howto/logging-cookbook.html
 Debugging -> PyCharm, PyDbg
 Profiling
+Regex:
+    https://docs.python.org/3/howto/regex.html
 Yaml / json / pickle
 Template engines / Jinja
 requests and urlib
 Sockets
+    https://docs.python.org/3/howto/sockets.html
 0MQ
 Api rest models
 Queues
@@ -55,8 +71,24 @@ String formats : unicode, utf8
 Bytes operation
 Boolean Logic
 Functional programing and functools
+    https://docs.python.org/3/howto/functional.html
 Weak reference
 Fabric / paramiko
 Type hints (static typing)
 Packaging: module / init / import / setup.py / venv pythonpath / pip / easy_install / egg/ wheel / setuptools
+    https://docs.python.org/3/tutorial/venv.html
 Inspect
+colletions
+heapq
+array
+enum
+mmap
+builtins
+    https://docs.python.org/3/library/functions.html#built-in-funcs
+    https://docs.python.org/3/library/constants.html#built-in-consts
+
+Context manager
+    https://docs.python.org/3/library/contextlib.html
+
+Language ref:
+    https://docs.python.org/3/reference/index.html

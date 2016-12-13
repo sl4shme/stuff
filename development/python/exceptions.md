@@ -136,7 +136,7 @@ try:
     Something that could fail
 except IndexError as e:
     # What we want to do if an IndexError happens in the try clause
-    raise e
+    pass
 except (TypeError, NameError):
     # We can group exception types
     pass
